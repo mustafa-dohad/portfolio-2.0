@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PersonalInfo from "./components/PersonalInfo";
 import SkillsLanguages from "./components/SkillsLanguages";
+import Projects from "./components/Projects";
 
 const getInitialTheme = () => {
   if (typeof window !== "undefined" && window.localStorage) {
@@ -43,6 +44,9 @@ function App() {
       </button>
       <PersonalInfo />
       <SkillsLanguages />
+      <div className="mt-8">
+        <Projects />
+      </div>
     </div>
   );
 }
