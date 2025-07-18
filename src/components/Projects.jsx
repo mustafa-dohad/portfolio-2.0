@@ -39,7 +39,7 @@ const projects = [
   {
     id: 8,
     title: "Veterinary Clinic System",
-    description: "A C command-line application to manage veterinary clinic appointments, patients, and records with efficient add, view, and sort features.",
+    description: "C CLI app for veterinary clinic management with appointment tracking.",
     image: "", // No image, custom terminal UI
     tags: ["C language", "Command-line application"],
     type: "Command-line application",
@@ -112,13 +112,10 @@ export default function Projects() {
     <section className="min-h-screen bg-background w-full">
       <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-neutral-900 to-neutral-700 dark:from-neutral-100 dark:to-neutral-400 bg-clip-text text-transparent mb-4 font-sanchez">
-            Featured Projects
+        <div className="text-center mb-6">
+          <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-neutral-900 to-neutral-700 dark:from-neutral-100 dark:to-neutral-400 bg-clip-text text-transparent mb-2 font-sanchez">
+            Projects
           </h1>
-          <p className="text-lg text-neutral-500 dark:text-neutral-400 max-w-2xl mx-auto">
-            A collection of modern web applications built with cutting-edge technologies
-          </p>
         </div>
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -137,10 +134,12 @@ function ProjectCard({ project }) {
     "group relative rounded-2xl shadow-md overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-lg flex flex-col justify-between h-auto md:h-[280px] lg:h-[280px] min-h-[140px]";
   if (project.id === 1) {
     // Custom ExpenseFlow card as a modern credit/debit card
+    const dollarCursor = 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\'%3E%3Ctext x=\'0\' y=\'24\' font-size=\'24\'%3E%24%3C/text%3E%3C/svg%3E") 0 24, pointer';
     return (
-      <div className={
-        `${cardBaseClass} border-2 border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900`
-      }>
+      <div
+        className={`${cardBaseClass} border-2 border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900`}
+        style={{ cursor: dollarCursor }}
+      >
         {/* Subtle Card Texture Overlay */}
         <div className="absolute inset-0 pointer-events-none opacity-30 group-hover:opacity-50 transition-opacity duration-500">
           <svg width="100%" height="100%" viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
@@ -214,7 +213,8 @@ function ProjectCard({ project }) {
             href="https://github.com/mustafa-dohad/expense-tracker"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-xs font-medium text-neutral-700 dark:text-neutral-200 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200 group/btn font-sanchez"
+            className="flex items-center gap-2 text-xs font-medium text-neutral-700 dark:text-neutral-200 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200 group/btn font-sanchez hover:border hover:border-neutral-800 dark:hover:border-neutral-200 rounded-lg px-3 py-1.5"
+            style={{ cursor: dollarCursor }}
           >
             <Github className="w-4 h-4 group-hover/btn:scale-110 transition-transform duration-200" />
             View Statement
@@ -223,7 +223,8 @@ function ProjectCard({ project }) {
             href="https://mustafa-dohad.infinityfreeapp.com/public/index.html"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-xs font-medium text-neutral-700 dark:text-neutral-200 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200 group/btn font-sanchez"
+            className="flex items-center gap-2 text-xs font-medium text-neutral-700 dark:text-neutral-200 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200 group/btn font-sanchez hover:border hover:border-neutral-800 dark:hover:border-neutral-200 rounded-lg px-3 py-1.5"
+            style={{ cursor: dollarCursor }}
           >
             <ExternalLink className="w-4 h-4 group-hover/btn:scale-110 transition-transform duration-200" />
             Open Account
@@ -235,8 +236,12 @@ function ProjectCard({ project }) {
   }
   if (project.automata) {
     // Custom NFA Simulator card with a cool, minimal Slate & Cyan theme
+    const circleCursor = 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\'%3E%3Ccircle cx=\'16\' cy=\'16\' r=\'10\' fill=\'none\' stroke=\'white\' stroke-width=\'2\'/%3E%3C/svg%3E") 16 16, pointer';
     return (
-      <div className={`${cardBaseClass} border border-[#38bdf8] bg-gradient-to-br from-[#233554] to-[#0f172a] rounded-xl shadow-none relative p-2 flex flex-col justify-between`}> 
+      <div
+        className={`${cardBaseClass} border border-[#38bdf8] bg-gradient-to-br from-[#233554] to-[#0f172a] rounded-xl shadow-none relative p-2 flex flex-col justify-between`}
+        style={{ cursor: circleCursor }}
+      >
         {/* Glowing Status Bar */}
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#38bdf8] via-[#60a5fa] to-[#38bdf8] blur-[2px] opacity-80 z-20 rounded-t-xl" />
         {/* Subtle Geometric + Cyan Pattern Background */}
@@ -296,6 +301,7 @@ function ProjectCard({ project }) {
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1 text-xs font-orbitron text-[#38bdf8] hover:border hover:border-[#38bdf8] hover:bg-[#1e293b]/40 px-3 py-1.5 rounded-lg transition-colors duration-200 group/btn"
+            style={{ cursor: circleCursor }}
           >
             <Github className="w-4 h-4" />
             View Code
@@ -305,6 +311,7 @@ function ProjectCard({ project }) {
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1 text-xs font-orbitron text-[#38bdf8] hover:border hover:border-[#38bdf8] hover:bg-[#1e293b]/40 px-3 py-1.5 rounded-lg transition-colors duration-200 group/btn"
+            style={{ cursor: circleCursor }}
           >
             <ExternalLink className="w-4 h-4" />
             Watch Video
@@ -314,36 +321,60 @@ function ProjectCard({ project }) {
     );
   }
   if (project.terminal) {
-    // Custom Veterinary Clinic System card as a macOS terminal window
+    // Custom Veterinary Clinic System card as a realistic terminal window
+    const catCursor = 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\'%3E%3Ctext x=\'0\' y=\'24\' font-size=\'24\'%3E%F0%9F%90%B1%3C/text%3E%3C/svg%3E") 0 24, pointer';
     return (
-      <div className="rounded-xl shadow-lg border border-[#23272e] bg-[#181a1b] relative flex flex-col h-auto md:h-[280px] lg:h-[280px] min-h-[140px] overflow-hidden">
-        {/* macOS Top Bar */}
-        <div className="flex items-center h-8 px-4 bg-[#23272e]/80 border-b border-[#23272e]">
-          <span className="w-3 h-3 rounded-full bg-red-500 mr-2 border border-red-400" />
-          <span className="w-3 h-3 rounded-full bg-yellow-400 mr-2 border border-yellow-300" />
-          <span className="w-3 h-3 rounded-full bg-green-500 border border-green-400" />
+      <div
+        className="rounded-xl shadow-lg border border-[#23272e] bg-[#0d1117] relative flex flex-col h-auto md:h-[280px] lg:h-[280px] min-h-[140px] overflow-hidden transition-transform duration-300 hover:scale-105"
+        style={{ cursor: catCursor }}
+      >
+        {/* macOS Terminal Top Bar */}
+        <div className="flex items-center h-8 px-4 bg-[#1f2937] border-b border-[#374151]">
+          <div className="flex items-center gap-2 mr-4">
+            <span className="w-3 h-3 rounded-full bg-red-500 mr-1 border border-red-400" />
+            <span className="w-3 h-3 rounded-full bg-yellow-400 mr-1 border border-yellow-300" />
+            <span className="w-3 h-3 rounded-full bg-green-500 border border-green-400" />
+          </div>
+          <div className="flex-1 text-center">
+            <span className="text-[#9ca3af] text-xs font-mono">Terminal — bash — 80×24</span>
+          </div>
         </div>
         {/* Terminal Content */}
-        <div className="flex-1 flex flex-col justify-center px-6 py-4 font-mono text-sm">
-          <div className="mb-2">
-            <span className="text-[#22c55e]">$</span> <span className="text-[#f8f8f2] font-mono text-base md:text-lg font-bold">./vet-clinic-management-system</span>
+        <div className="flex-1 flex flex-col justify-center px-6 py-4 font-mono text-xs bg-[#0d1117]">
+          {/* Command Line */}
+          <div className="mb-3 flex items-center">
+            <span className="text-[#6b7280] mr-2 text-[8px]">~</span>
+            <span className="text-[#6b7280] mr-2 text-xs">$</span>
+            <span className="text-[#f8f8f2] font-mono text-sm md:text-base font-bold">./vet-clinic-management-system</span>
+            <span className="text-[#22c55e] ml-1 text-xs" style={{ animation: 'blink 1s infinite' }}>|</span>
           </div>
-          <pre className="whitespace-pre-line text-[#a1a1aa] text-[11px] md:text-xs leading-snug mb-2 font-mono">{project.description}</pre>
+          {/* Terminal Output */}
+          <div className="bg-[#161b22] border border-[#30363d] rounded p-3 mb-3">
+            <pre className="whitespace-pre-line text-[#c9d1d9] text-[10px] md:text-xs leading-relaxed font-mono">{project.description}</pre>
+          </div>
+          {/* File Info */}
+          <div className="text-[#8b949e] text-[10px] mb-3">
+            <span>Size: 15.2KB</span>
+            <span className="mx-2">|</span>
+            <span>Lines: 847</span>
+          </div>
+          {/* Tags as terminal-style labels */}
           <div className="flex gap-2 flex-wrap">
             {project.tags.map(tag => (
-              <span key={tag} className="bg-[#23272e] text-[#bcbcbc] px-2 py-1 rounded text-[11px] font-mono border border-[#393b40] whitespace-nowrap">
+              <span key={tag} className="bg-[#21262d] text-[#58a6ff] px-2 py-1 rounded text-[9px] font-mono border border-[#30363d] whitespace-nowrap">
                 {tag}
               </span>
             ))}
           </div>
         </div>
         {/* Actions full width below tags */}
-        <div className="flex gap-2 px-6 pb-4 w-full">
+        <div className="flex gap-2 px-6 pb-4 w-full bg-[#0d1117]">
           <a
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-1 text-xs font-mono text-[#82aaff] hover:border hover:border-[#82aaff] hover:bg-[#23272e]/40 px-3 py-1 rounded transition-colors duration-200 group/btn"
+            className="flex-1 flex items-center justify-center gap-1 text-xs font-mono text-[#58a6ff] hover:border hover:border-[#58a6ff] hover:bg-[#21262d]/40 px-3 py-1.5 rounded transition-colors duration-200 group/btn"
+            style={{ cursor: catCursor }}
           >
             <Github className="w-4 h-4" />
             View Code
@@ -402,11 +433,15 @@ function ProjectCard({ project }) {
           </div>
           {/* Actions */}
           <div className="flex items-center gap-3">
-            <button className="flex items-center gap-2 text-sm font-medium text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200 group/btn">
+            <button className="flex items-center gap-2 text-sm font-medium text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200 group/btn"
+              style={{ cursor: 'url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2732%27 height=%2732%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2710%27 fill=%27white%27/%3E%3C/svg%3E") 16 16, pointer' }}
+            >
               <Github className="w-4 h-4 group-hover/btn:scale-110 transition-transform duration-200" />
               Code
             </button>
-            <button className="flex items-center gap-2 text-sm font-medium text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200 group/btn">
+            <button className="flex items-center gap-2 text-sm font-medium text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200 group/btn"
+              style={{ cursor: 'url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2732%27 height=%2732%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2710%27 fill=%27white%27/%3E%3C/svg%3E") 16 16, pointer' }}
+            >
               <ExternalLink className="w-4 h-4 group-hover/btn:scale-110 transition-transform duration-200" />
               Live Demo
             </button>

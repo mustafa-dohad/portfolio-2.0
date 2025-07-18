@@ -33,7 +33,7 @@ export default function PersonalInfo() {
   const [hovered, setHovered] = useState(null);
 
   return (
-    <section className="flex flex-col lg:flex-row items-center justify-center w-full max-w-4xl px-4 sm:px-8 py-0 mt-12 mb-0 sm:mb-6 mx-auto min-h-[48vh]">
+    <section className="flex flex-col lg:flex-row items-center justify-center w-full max-w-4xl px-4 sm:px-8 py-0 mt-2 lg:mt-4 mb-1 lg:mb-2 mx-auto min-h-[48vh]">
       {/* Profile Column */}
       <div className="flex flex-col items-center justify-center w-full lg:w-[45%] lg:max-w-none mb-4 lg:mb-0 lg:mr-8">
         <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-56 lg:h-56 rounded-full bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center overflow-hidden flex-shrink-0">
@@ -46,12 +46,12 @@ export default function PersonalInfo() {
       </div>
       {/* Info Column */}
       <div className="flex flex-col items-center lg:items-start text-center lg:text-left w-full lg:w-[55%] max-w-lg lg:max-w-none">
-        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-neutral-900 dark:text-neutral-100 tracking-tight mb-1 font-sanchez">Mustafa Murtaza Dohad</h2>
-        <p className="text-sm sm:text-base md:text-lg lg:text-xl text-neutral-500 dark:text-neutral-400 font-medium mb-2 font-arapey">Full Stack Developer</p>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-semibold text-neutral-900 dark:text-neutral-100 tracking-tight mb-1 font-sanchez">Mustafa Murtaza Dohad</h2>
+        <p className="text-base sm:text-lg md:text-xl lg:text-xl text-neutral-500 dark:text-neutral-400 font-medium mb-2 font-arapey">Full Stack Developer</p>
         {/* Location */}
         <div className="flex items-center justify-center lg:justify-start space-x-2 text-neutral-400 dark:text-neutral-500 mb-2 font-sanchez">
-          <span className="text-xs sm:text-sm md:text-base lg:text-lg">Karachi, Pakistan</span>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7">
+          <span className="text-sm sm:text-base md:text-lg lg:text-lg">Karachi, Pakistan</span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-7 lg:h-7">
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
           </svg>
@@ -62,10 +62,10 @@ export default function PersonalInfo() {
           className="flex items-center justify-center lg:justify-start space-x-2 text-neutral-500 dark:text-neutral-400 mb-2 font-sanchez hover:text-blue-500 dark:hover:text-blue-400 focus:text-blue-500 dark:focus:text-blue-400 transition-colors outline-none"
           aria-label="Send email to mustafamurtazadohad@gmail.com"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-7 lg:h-7">
             <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
           </svg>
-          <span className="text-xs sm:text-sm md:text-base lg:text-lg select-all">mustafamurtazadohad@gmail.com</span>
+          <span className="text-sm sm:text-base md:text-lg lg:text-lg select-all">mustafamurtazadohad@gmail.com</span>
         </a>
         {/* Social Links */}
         <div className="flex space-x-4 sm:space-x-5 mb-4 lg:mb-6 justify-center lg:justify-start">
@@ -101,7 +101,7 @@ export default function PersonalInfo() {
         <a
           href={resumePDF}
           download="MustafaDohad-Resume.pdf"
-          className="px-5 py-2 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 font-medium transition-all duration-200 text-sm hover:bg-[#C42344] hover:text-white focus:outline-none focus:ring-2 focus:ring-neutral-200 dark:focus:ring-neutral-700 font-sanchez transform hover:scale-105"
+          className="px-5 py-2 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 font-medium transition-all duration-200 text-base sm:text-lg hover:bg-[#C42344] hover:text-white focus:outline-none focus:ring-2 focus:ring-neutral-200 dark:focus:ring-neutral-700 font-sanchez transform hover:scale-105"
         >
           Download Resume
         </a>

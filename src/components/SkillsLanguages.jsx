@@ -30,26 +30,26 @@ const skills = [
 
 export default function SkillsLanguages() {
   return (
-    <section className="w-full max-w-4xl mx-auto px-4 py-6 sm:py-8">
-      <h3 className="text-xl sm:text-2xl font-semibold mb-6 sm:mb-8 text-neutral-800 dark:text-neutral-100 font-sanchez text-center">Skills & Languages</h3>
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4 sm:gap-6 md:gap-8 justify-items-center">
+    <section className="w-full max-w-4xl mx-auto px-4 py-1 sm:py-2 lg:py-4 mb-0.5 sm:mb-1 lg:mb-2">
+      <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 lg:mb-8 text-neutral-800 dark:text-neutral-100 font-sanchez text-center">Skills & Languages</h3>
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 sm:gap-4 md:gap-6 lg:gap-8 justify-items-center">
         {skills.map((skill) => (
           <div
             key={skill.name}
-            className="flex flex-col items-center group"
+            className="flex flex-col items-center justify-center group transition-transform duration-200 ease-in-out w-20 h-20 sm:w-24 sm:h-24 rounded-lg gap-1 sm:hover:bg-white sm:hover:border sm:hover:border-neutral-300 sm:hover:shadow-md sm:dark:hover:bg-neutral-900"
           >
             {skill.icon ? (
               <img
                 src={skill.icon}
                 alt={skill.name}
-                className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain mb-1 rounded-lg group-hover:scale-110 group-hover:shadow-md transition-transform duration-200 ease-in-out"
+                className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 object-contain mb-1"
               />
             ) : (
-              <span className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 flex items-center justify-center rounded-lg bg-transparent text-neutral-500 dark:text-neutral-400 font-semibold mb-1 border border-neutral-200 dark:border-neutral-700">
+              <span className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 flex items-center justify-center rounded-full bg-transparent text-neutral-500 dark:text-neutral-400 font-semibold border border-neutral-200 dark:border-neutral-700 mb-1">
                 {skill.name[0]}
               </span>
             )}
-            <span className="text-xs sm:text-sm md:text-base text-neutral-700 dark:text-neutral-200 font-sanchez text-center select-none">
+            <span className="text-xs sm:text-sm md:text-base text-neutral-700 dark:text-neutral-200 font-sanchez text-center select-none leading-tight">
               {skill.name}
             </span>
           </div>

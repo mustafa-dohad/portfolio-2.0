@@ -12,6 +12,7 @@ export default {
         arapey: ["var(--font-arapey)", "serif"],
         sanchez: ["var(--font-sanchez)", "serif"],
         orbitron: ["var(--font-orbitron)", "sans-serif"],
+        baloo: ['Baloo2', 'sans-serif'],
       },
       colors: {
         'neon-cyan': '#00ffe7',
