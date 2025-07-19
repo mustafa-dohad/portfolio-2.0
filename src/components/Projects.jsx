@@ -88,7 +88,7 @@ export default function Projects() {
     <section className="min-h-screen bg-background w-full">
       <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Header */}
-        <div className="text-center mb-6">
+        <div className="text-center mb-10">
           <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-neutral-900 to-neutral-700 dark:from-neutral-100 dark:to-neutral-400 bg-clip-text text-transparent mb-2 font-sanchez">
             Projects
           </h1>

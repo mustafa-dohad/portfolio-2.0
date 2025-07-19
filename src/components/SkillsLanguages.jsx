@@ -31,7 +31,6 @@ const skills = [
 export default function SkillsLanguages() {
   return (
     <section className="w-full max-w-4xl mx-auto px-4 py-1 sm:py-2 lg:py-4 mb-0.5 sm:mb-1 lg:mb-2">
-      <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 lg:mb-8 text-neutral-800 dark:text-neutral-100 font-sanchez text-center">Skills & Languages</h3>
       <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 sm:gap-4 md:gap-6 lg:gap-8 justify-items-center">
         {skills.map((skill) => (
           <div
