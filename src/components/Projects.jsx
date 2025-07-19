@@ -2,15 +2,15 @@ import React from "react";
 import {
   ExternalLink,
   Github,
-  DollarSign,
   CheckSquare,
-  Cloud,
-  User,
-  ShoppingBag,
   MessageCircle,
 } from "lucide-react";
+import WalletIcon from "../assets/icons/ui/Wallet Icon.svg";
+import AnimalIcon from "../assets/icons/ui/Animal Icon.svg";
+import CalculatorIcon from "../assets/icons/ui/Calculator Icon.svg";
 
 const projects = [
+  // First row
   {
     id: 1,
     title: "ExpenseFlow",
@@ -20,33 +20,20 @@ const projects = [
     type: "expense",
     gradient: "from-green-500/10 to-emerald-500/10",
     accent: "border-green-500/20",
-    icon: DollarSign,
+    github: undefined,
   },
   {
     id: 7,
     title: "NFA Simulator",
     description: "Visualize and simulate nondeterministic finite automata (NFA) with interactive state diagrams.",
     subtitle: "Interactive state machine playground",
-    image: "", // No image, use SVG
+    image: "",
     tags: ["Python", "PySimpleGUI", "Graphviz", "State Machine Logic"],
     type: "Desktop GUI Application",
     accent: "border-gray-200",
-    icon: null, // We'll use a custom SVG
     github: "https://github.com/mustafa-dohad/nfa-simulator",
     demo: "https://youtu.be/5VZsjyMqn4s?si=5l0K09kO1MducQYL",
     automata: true,
-  },
-  {
-    id: 8,
-    title: "Veterinary Clinic System",
-    description: "C CLI app for veterinary clinic management with appointment tracking.",
-    image: "", // No image, custom terminal UI
-    tags: ["C language", "Command-line application"],
-    type: "Command-line application",
-    accent: "border-gray-300",
-    icon: null, // Custom terminal UI
-    github: "https://github.com/mustafa-dohad/Veterinary-Clinic-System",
-    terminal: true,
   },
   {
     id: 3,
@@ -57,55 +44,42 @@ const projects = [
     type: "weather",
     gradient: "from-sky-500/10 to-blue-500/10",
     accent: "border-sky-500/20",
-    icon: Cloud,
     github: "https://github.com/mustafa-dohad/employee-management-system",
     demo: "https://youtu.be/pXMzkRGpKy0?si=oWgNlaPrKuesuZCX",
+  },
+  // Second row
+  {
+    id: 8,
+    title: "Veterinary Clinic System",
+    description: "C CLI app for veterinary clinic management with appointment tracking.",
+    image: "",
+    tags: ["C language", "Command-line application"],
+    type: "Command-line application",
+    accent: "border-gray-300",
+    github: "https://github.com/mustafa-dohad/Veterinary-Clinic-System",
+    terminal: true,
+  },
+  {
+    id: 5,
+    title: "Todolist",
+    description: "Minimal todo list for your terminal. Stay organized.",
+    image: "",
+    tags: ["C++", "CLI", "Productivity"],
+    type: "cli",
+    accent: "border-gray-200",
+    github: "https://github.com/mustafa-dohad/ToDo-List",
   },
   {
     id: 4,
     title: "Calculator",
     description: "Modern iOS-style calculator with clean design and smooth animations",
-    image: "", // No image, custom calculator UI
+    image: "",
     tags: ["HTML", "CSS", "JavaScript", "Responsive Design"],
     type: "Calculator",
     accent: "border-gray-300",
-    icon: null, // Custom calculator UI
     github: "https://github.com/mustafa-dohad/calculator",
     demo: "https://dohad-calculator.netlify.app",
     calculator: true,
-  },
-  {
-    id: 5,
-    title: "ShopSphere",
-    description: "Modern e-commerce platform with advanced filtering and payment integration",
-    image: "/placeholder.svg",
-    tags: ["React", "Stripe", "Redux", "Express"],
-    type: "ecommerce",
-    gradient: "from-orange-500/10 to-red-500/10",
-    accent: "border-orange-500/20",
-    icon: ShoppingBag,
-  },
-  {
-    id: 6,
-    title: "ChatFlow",
-    description: "Real-time messaging app with end-to-end encryption and file sharing",
-    image: "/placeholder.svg",
-    tags: ["Socket.io", "React", "Node.js", "Encryption"],
-    type: "chat",
-    gradient: "from-indigo-500/10 to-purple-500/10",
-    accent: "border-indigo-500/20",
-    icon: MessageCircle,
-  },
-  {
-    id: 2,
-    title: "TaskMaster Pro",
-    description: "Collaborative task management with real-time updates and team analytics",
-    image: "/placeholder.svg",
-    tags: ["Next.js", "TypeScript", "Prisma", "WebSocket"],
-    type: "task",
-    gradient: "from-blue-500/10 to-cyan-500/10",
-    accent: "border-blue-500/20",
-    icon: CheckSquare,
   },
 ];
 
@@ -131,14 +105,13 @@ export default function Projects() {
 }
 
 function ProjectCard({ project }) {
-  const Icon = project.icon;
   if (project.id === 1) {
     // Custom ExpenseFlow card as a modern credit/debit card
-    const dollarCursor = 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\'%3E%3Ctext x=\'0\' y=\'24\' font-size=\'24\'%3E%24%3C/text%3E%3C/svg%3E") 0 24, pointer';
+    const walletCursor = `url('/Wallet Icon.png') 16 16, pointer`;
     return (
       <div
         className={`group relative rounded-2xl shadow-md overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-lg flex flex-col justify-between h-auto md:h-[280px] lg:h-[280px] min-h-[140px] border-2 border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900`}
-        style={{ cursor: dollarCursor }}
+        style={{ cursor: walletCursor }}
       >
         {/* Subtle Card Texture Overlay */}
         <div className="absolute inset-0 pointer-events-none opacity-30 group-hover:opacity-50 transition-opacity duration-500">
@@ -181,7 +154,6 @@ function ProjectCard({ project }) {
             4532 9821 1743 2210
           </span>
           {/* Card Icon */}
-          <Icon className="w-6 h-6 text-neutral-500 dark:text-neutral-300" />
         </div>
         {/* Card Content */}
         <div className="flex-1 flex flex-col justify-center px-4 py-2">
@@ -214,7 +186,7 @@ function ProjectCard({ project }) {
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-xs font-medium text-neutral-700 dark:text-neutral-200 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200 group/btn font-sanchez hover:border hover:border-neutral-800 dark:hover:border-neutral-200 rounded-lg px-3 py-1.5"
-            style={{ cursor: dollarCursor }}
+            style={{ cursor: walletCursor }}
           >
             <Github className="w-4 h-4 group-hover/btn:scale-110 transition-transform duration-200" />
             View Statement
@@ -224,7 +196,7 @@ function ProjectCard({ project }) {
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-xs font-medium text-neutral-700 dark:text-neutral-200 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200 group/btn font-sanchez hover:border hover:border-neutral-800 dark:hover:border-neutral-200 rounded-lg px-3 py-1.5"
-            style={{ cursor: dollarCursor }}
+            style={{ cursor: walletCursor }}
           >
             <ExternalLink className="w-4 h-4 group-hover/btn:scale-110 transition-transform duration-200" />
             Open Account
@@ -286,9 +258,9 @@ function ProjectCard({ project }) {
             {project.description}
           </p>
           {/* Tags as ultra-minimal pills */}
-          <div className="flex flex-nowrap gap-2 mb-2 overflow-hidden">
-            {['Python', 'Graphviz', 'PySimpleGUI', 'Algorithms'].map(tag => (
-              <span key={tag} className="bg-[#1e293b] text-[#38bdf8] px-2 py-0.5 rounded-lg text-xs font-orbitron border border-[#38bdf8] whitespace-nowrap overflow-hidden text-ellipsis">
+          <div className="flex flex-nowrap gap-2 mb-1 overflow-hidden">
+            {["Python", "Graphviz", "PySimpleGUI", "Algorithms"].map(tag => (
+              <span key={tag} className="bg-[#1e293b] text-[#38bdf8] min-w-[70px] px-3 py-0.5 rounded-lg text-[8px] font-orbitron border border-[#38bdf8] whitespace-nowrap overflow-hidden text-ellipsis flex items-center justify-center">
                 {tag}
               </span>
             ))}
@@ -321,12 +293,12 @@ function ProjectCard({ project }) {
     );
   }
   if (project.terminal) {
-    // Custom Veterinary Clinic System card as a realistic terminal window
-    const catCursor = 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\'%3E%3Ctext x=\'0\' y=\'24\' font-size=\'24\'%3E%F0%9F%90%B1%3C/text%3E%3C/svg%3E") 0 24, pointer';
+    // Veterinary Clinic System card: use white paw cursor
+    const pawCursor = `url('/animal(white)-cursor.png') 16 16, pointer`;
     return (
       <div
         className={`group relative rounded-2xl shadow-md overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-lg flex flex-col justify-between h-auto md:h-[280px] lg:h-[280px] min-h-[140px] border border-[#23272e] bg-[#0d1117] rounded-xl shadow-lg border border-[#23272e] bg-[#0d1117] relative flex flex-col h-auto md:h-[280px] lg:h-[280px] min-h-[140px] overflow-hidden transition-transform duration-300 hover:scale-105`}
-        style={{ cursor: catCursor }}
+        style={{ cursor: pawCursor }}
       >
         {/* macOS Terminal Top Bar */}
         <div className="flex items-center h-8 px-4 bg-[#1f2937] border-b border-[#374151]">
@@ -374,7 +346,7 @@ function ProjectCard({ project }) {
             target="_blank"
             rel="noopener noreferrer"
             className="flex-1 flex items-center justify-center gap-1 text-xs font-mono text-[#58a6ff] hover:border hover:border-[#58a6ff] hover:bg-[#21262d]/40 px-3 py-1.5 rounded transition-colors duration-200 group/btn"
-            style={{ cursor: catCursor }}
+            style={{ cursor: pawCursor }}
           >
             <Github className="w-4 h-4" />
             View Code
@@ -384,8 +356,8 @@ function ProjectCard({ project }) {
     );
   }
   if (project.calculator) {
-    // Custom iOS/iPadOS Calculator card
-    const calculatorCursor = 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\'%3E%3Ctext x=\'0\' y=\'24\' font-size=\'24\' fill=\'white\'%3E%3D%3C/text%3E%3C/svg%3E") 0 24, pointer';
+    // Calculator card: use white calculator cursor
+    const calculatorCursor = `url('/calculator(white)-cursor.png') 16 16, pointer`;
     return (
       <div
         className={`group relative rounded-2xl shadow-md overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-lg flex flex-col justify-between h-auto md:h-[280px] lg:h-[280px] min-h-[140px] border bg-[#000000] rounded-3xl shadow-2xl border border-[#333333] relative overflow-hidden`}
@@ -396,7 +368,7 @@ function ProjectCard({ project }) {
           {/* Calculator Screen */}
           <div className="bg-[#000000] p-4 flex items-center justify-center min-h-[60px] border-b border-[#333333]">
             <div className="text-center">
-              <div className="text-[#ffffff] text-xl font-bold font-mono tracking-wider">
+              <div className="text-[#ffffff] text-xl font-bold font-sanchez tracking-wider">
                 Calculator WebApp
               </div>
             </div>
@@ -495,6 +467,70 @@ function ProjectCard({ project }) {
             </div>
           </div>
         </div>
+      </div>
+    );
+  }
+  if (project.title === "Todolist") {
+    return (
+      <div
+        className="group relative rounded-2xl border-l-8 border-blue-400 bg-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex flex-col justify-between h-auto md:h-[280px] lg:h-[280px] min-h-[140px] p-5 overflow-hidden"
+        style={{ cursor: "url('/todo-cursor.png') 16 16, pointer" }}
+      >
+        {/* + Add Task button (for style) */}
+        <button className="absolute top-3 right-3 bg-blue-100 hover:bg-blue-200 text-blue-700 font-bold rounded-full w-7 h-7 flex items-center justify-center shadow transition-all duration-200 text-base z-10 select-none"
+          style={{ cursor: "url('/todo-cursor.png') 16 16, pointer" }}
+        >+</button>
+        {/* Focus badge */}
+        <span className="inline-block mb-2 px-1.5 py-0.5 rounded-full bg-blue-50 text-blue-700 text-xs font-sanchez border border-blue-200 w-fit">Focus</span>
+        {/* Title and fun emoji */}
+        <div className="flex items-center gap-2 mb-1">
+          <h3 className="text-base md:text-lg lg:text-xl font-bold text-neutral-900 dark:text-white font-sanchez">Todolist</h3>
+          <span className="text-lg select-none">📝</span>
+        </div>
+        {/* Short, punchy description */}
+        <p className="text-xs md:text-sm text-neutral-700 dark:text-neutral-200 font-arapey mb-2">Minimal todo list for your terminal. Stay organized.</p>
+        {/* Kanban-style checklist */}
+        <div className="flex flex-col gap-1 font-mono text-[12px] text-neutral-800 dark:text-neutral-100 mb-2">
+          <label className="flex items-center gap-2 group/checkbox" style={{ cursor: "url('/todo-cursor.png') 16 16, pointer" }}>
+            <input type="checkbox" checked readOnly className="accent-blue-500 w-3.5 h-3.5 rounded border border-blue-300" />
+            Add groceries to buy 🥦
+          </label>
+          <label className="flex items-center gap-2 group/checkbox" style={{ cursor: "url('/todo-cursor.png') 16 16, pointer" }}>
+            <input type="checkbox" className="accent-blue-500 w-3.5 h-3.5 rounded border border-blue-300" />
+            Finish C++ homework 📚
+          </label>
+          <label className="flex items-center gap-2 group/checkbox" style={{ cursor: "url('/todo-cursor.png') 16 16, pointer" }}>
+            <input type="checkbox" checked readOnly className="accent-blue-500 w-3.5 h-3.5 rounded border border-blue-300" />
+            Mark tasks as done ✔️
+          </label>
+        </div>
+        {/* Progress Bar */}
+        <div className="w-full h-2 bg-blue-100 rounded-full overflow-hidden mb-2">
+          <div className="h-full bg-blue-400 transition-all duration-500" style={{ width: '50%' }} />
+        </div>
+        {/* Tags */}
+        <div className="flex gap-2 flex-wrap mt-auto mb-2">
+          {project.tags.map(tag => (
+            <span key={tag} className="bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded text-[10px] font-sanchez border border-blue-200">
+              {tag}
+            </span>
+          ))}
+        </div>
+        {/* GitHub Button */}
+        {project.github && (
+          <div className="flex justify-end w-full" style={{ cursor: "url('/todo-cursor.png') 16 16, pointer" }}>
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 text-xs font-mono text-blue-700 hover:border hover:border-blue-400 hover:bg-blue-50 px-3 py-1.5 rounded-lg transition-colors duration-200 group/btn mt-1"
+              style={{ cursor: "url('/todo-cursor.png') 16 16, pointer" }}
+            >
+              <Github className="w-4 h-4" />
+              GitHub
+            </a>
+          </div>
+        )}
       </div>
     );
   }
@@ -652,20 +688,21 @@ function ProjectCard({ project }) {
         <div className="relative">
           <div className="absolute top-4 left-4 z-20">
             <div className="flex items-center gap-2 bg-white/90 dark:bg-neutral-900/90 backdrop-blur-sm rounded-full px-3 py-1.5 border border-neutral-200 dark:border-neutral-700">
-              <Icon className="w-4 h-4" />
               <span className="text-xs font-medium capitalize font-sanchez">{project.type}</span>
             </div>
           </div>
           {/* Image */}
           <div className="relative overflow-hidden rounded-t-2xl">
-            <img
-              src={project.image}
-              alt={project.title}
-              width={300}
-              height={200}
-              className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
-              loading="lazy"
-            />
+            {project.image && project.image.trim() !== "" && (
+              <img
+                src={project.image}
+                alt={project.title}
+                width={300}
+                height={200}
+                className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy"
+              />
+            )}
             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
           </div>
         </div>

@@ -9,7 +9,7 @@ const navItems = [
 
 export default function BottomNav() {
   return (
-    <nav className="md:hidden fixed bottom-4 left-12 flex gap-4 bg-white/80 dark:bg-gray-900/80 backdrop-blur rounded-full px-4 py-2 shadow-lg z-50">
+    <nav className="md:hidden fixed bottom-4 left-8 flex gap-4 bg-white/80 dark:bg-gray-900/80 backdrop-blur rounded-full px-4 py-2 shadow-lg z-50">
       {navItems.map(({ name, href, icon: Icon }) => (
         <a
           key={name}

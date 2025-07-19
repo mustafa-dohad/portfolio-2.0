@@ -102,7 +102,7 @@ function App() {
         {'< mustafa />'}
       </header>
       <PersonalInfo />
-      <div className="my-0.5 sm:my-1 w-full">
+      <div className="my-0 w-full">
         <SkillsLanguages />
       </div>
       <div className="mt-0.5 sm:mt-1 lg:mt-0.5 w-full">

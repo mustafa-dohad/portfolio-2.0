@@ -126,7 +126,7 @@
   font-weight: 700;
   font-style: normal;
   font-display: swap;
-}
+  }
 
 @keyframes blink {
   0%, 50% { opacity: 1; }
@@ -138,7 +138,7 @@
   --font-arapey: 'Arapey', serif;
   --font-sanchez: 'Sanchez', serif;
   --font-orbitron: 'Orbitron', sans-serif;
-}
+  }
 
 @tailwind base;
 @tailwind components;
