@@ -615,7 +615,7 @@ function ProjectCard({ project }) {
         </div>
         {/* Project Title Full Width */}
         <div className="w-full text-center pt-8 pb-2 px-2">
-          <span className="text-base md:text-lg font-baloo font-bold text-neutral-800 dark:text-neutral-100 tracking-wide block truncate">Employee Management System</span>
+          <span className="text-base md:text-lg font-bold text-neutral-800 dark:text-neutral-100 tracking-wide block truncate">Employee Management System</span>
         </div>
         {/* Card Content */}
         <div className="relative flex flex-row items-center h-full w-full px-5 pb-4 z-10">
@@ -634,7 +634,7 @@ function ProjectCard({ project }) {
           {/* Info */}
           <div className="flex-1 flex flex-col justify-center h-full min-w-0">
             <div className="mb-2">
-              <div className="text-sm md:text-base font-semibold text-neutral-800 dark:text-neutral-100 font-baloo truncate">Name: Mustafa Dohad</div>
+              <div className="text-sm md:text-base font-semibold text-neutral-800 dark:text-neutral-100 font-arapey truncate">Name: Mustafa Dohad</div>
               <div className="text-[9px] md:text-[11px] text-neutral-500 dark:text-neutral-300 font-mono truncate">Email: mustafamurtazadohad@gmail.com</div>
               <div className="text-xs text-neutral-400 font-mono mt-1">ID: EMS-2024</div>
             </div>
