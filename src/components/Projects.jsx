@@ -618,6 +618,7 @@ function ProjectCard({ project }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-1 text-xs font-mono text-[#00758f] hover:border hover:border-[#00758f] hover:bg-[#e0f7fa]/40 px-3 py-1.5 rounded transition-colors duration-200 group/btn"
+                  style={{ cursor: fingerprintCursor }}
                 >
                   <Github className="w-6 h-6" />
                   Code
@@ -627,6 +628,7 @@ function ProjectCard({ project }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-1 text-xs font-mono text-[#f89820] hover:border hover:border-[#f89820] hover:bg-[#fff7e6]/40 px-3 py-1.5 rounded transition-colors duration-200 group/btn"
+                  style={{ cursor: fingerprintCursor }}
                 >
                   <ExternalLink className="w-6 h-6" />
                   Demo
