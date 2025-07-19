@@ -61,14 +61,16 @@ const projects = [
   },
   {
     id: 4,
-    title: "Portfolio Studio",
-    description: "Dynamic portfolio builder with customizable themes and analytics",
-    image: "/placeholder.svg",
-    tags: ["Next.js", "Tailwind", "Framer Motion", "CMS"],
-    type: "portfolio",
-    gradient: "from-purple-500/10 to-pink-500/10",
-    accent: "border-purple-500/20",
-    icon: User,
+    title: "Calculator",
+    description: "Modern iOS-style calculator with clean design and smooth animations",
+    image: "", // No image, custom calculator UI
+    tags: ["HTML", "CSS", "JavaScript", "Responsive Design"],
+    type: "Calculator",
+    accent: "border-gray-300",
+    icon: null, // Custom calculator UI
+    github: "https://github.com/mustafa-dohad/calculator",
+    demo: "https://dohad-calculator.netlify.app",
+    calculator: true,
   },
   {
     id: 5,
@@ -379,6 +381,121 @@ function ProjectCard({ project }) {
             <Github className="w-4 h-4" />
             View Code
           </a>
+        </div>
+      </div>
+    );
+  }
+  if (project.calculator) {
+    // Custom iOS/iPadOS Calculator card
+    const calculatorCursor = 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\'%3E%3Ctext x=\'0\' y=\'24\' font-size=\'24\' fill=\'white\'%3E%3D%3C/text%3E%3C/svg%3E") 0 24, pointer';
+    return (
+      <div
+        className={`${cardBaseClass} bg-[#000000] rounded-3xl shadow-2xl border border-[#333333] relative overflow-hidden`}
+        style={{ cursor: calculatorCursor }}
+      >
+        {/* Calculator Body */}
+        <div className="flex flex-col h-full">
+          {/* Calculator Screen */}
+          <div className="bg-[#000000] p-4 flex items-center justify-center min-h-[60px] border-b border-[#333333]">
+            <div className="text-center">
+              <div className="text-[#ffffff] text-xl font-bold font-mono tracking-wider">
+                Calculator WebApp
+              </div>
+            </div>
+          </div>
+          
+          {/* Calculator Buttons Container */}
+          <div className="flex-1 p-3">
+            {/* Row 1 */}
+            <div className="flex justify-center gap-1 mb-1">
+              <div className="bg-[#666666] rounded-full w-16 h-11 flex items-center justify-center text-white text-sm font-light hover:bg-[#999999] transition-colors">
+                7
+              </div>
+              <div className="bg-[#666666] rounded-full w-16 h-11 flex items-center justify-center text-white text-sm font-light hover:bg-[#999999] transition-colors">
+                8
+              </div>
+              <div className="bg-[#666666] rounded-full w-16 h-11 flex items-center justify-center text-white text-sm font-light hover:bg-[#999999] transition-colors">
+                9
+              </div>
+              <div className="bg-[#333333] rounded-full w-16 h-11 flex items-center justify-center text-white text-sm font-light hover:bg-[#666666] transition-colors">
+                AC
+              </div>
+              <div className="bg-[#ff9500] rounded-full w-16 h-11 flex items-center justify-center text-white text-sm font-light hover:bg-[#ffaa33] transition-colors">
+                ÷
+              </div>
+            </div>
+            
+            {/* Row 2 */}
+            <div className="flex justify-center gap-1 mb-1">
+              <div className="bg-[#666666] rounded-full w-16 h-11 flex items-center justify-center text-white text-sm font-light hover:bg-[#999999] transition-colors">
+                4
+              </div>
+              <div className="bg-[#666666] rounded-full w-16 h-11 flex items-center justify-center text-white text-sm font-light hover:bg-[#999999] transition-colors">
+                5
+              </div>
+              <div className="bg-[#666666] rounded-full w-16 h-11 flex items-center justify-center text-white text-sm font-light hover:bg-[#999999] transition-colors">
+                6
+              </div>
+              <div className="bg-[#333333] rounded-full w-16 h-11 flex items-center justify-center text-white text-sm font-light hover:bg-[#666666] transition-colors">
+                ±
+              </div>
+              <div className="bg-[#ff9500] rounded-full w-16 h-11 flex items-center justify-center text-white text-sm font-light hover:bg-[#ffaa33] transition-colors">
+                ×
+              </div>
+            </div>
+            
+            {/* Row 3 */}
+            <div className="flex justify-center gap-1 mb-1">
+              <div className="bg-[#666666] rounded-full w-16 h-11 flex items-center justify-center text-white text-sm font-light hover:bg-[#999999] transition-colors">
+                1
+              </div>
+              <div className="bg-[#666666] rounded-full w-16 h-11 flex items-center justify-center text-white text-sm font-light hover:bg-[#999999] transition-colors">
+                2
+              </div>
+              <div className="bg-[#666666] rounded-full w-16 h-11 flex items-center justify-center text-white text-sm font-light hover:bg-[#999999] transition-colors">
+                3
+              </div>
+              <div className="bg-[#333333] rounded-full w-16 h-11 flex items-center justify-center text-white text-sm font-light hover:bg-[#666666] transition-colors">
+                %
+              </div>
+              <div className="bg-[#ff9500] rounded-full w-16 h-11 flex items-center justify-center text-white text-sm font-light hover:bg-[#ffaa33] transition-colors">
+                −
+              </div>
+            </div>
+            
+            {/* Row 4 */}
+            <div className="flex justify-center gap-1">
+              {/* GitHub Button */}
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#333333] rounded-full w-16 h-11 flex items-center justify-center text-white text-sm font-medium hover:bg-[#666666] transition-colors group"
+                style={{ cursor: calculatorCursor }}
+              >
+                <Github className="w-5 h-5 group-hover:scale-110 transition-transform" />
+              </a>
+              <div className="bg-[#666666] rounded-full w-16 h-11 flex items-center justify-center text-white text-sm font-light hover:bg-[#999999] transition-colors">
+                0
+              </div>
+              <div className="bg-[#666666] rounded-full w-16 h-11 flex items-center justify-center text-white text-sm font-light hover:bg-[#999999] transition-colors">
+                .
+              </div>
+              <div className="bg-[#333333] rounded-full w-16 h-11 flex items-center justify-center text-white text-sm font-light hover:bg-[#666666] transition-colors">
+                +
+              </div>
+              {/* Demo Button */}
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#ff9500] rounded-full w-16 h-11 flex items-center justify-center text-white text-sm font-medium hover:bg-[#ffaa33] transition-colors group"
+                style={{ cursor: calculatorCursor }}
+              >
+                <ExternalLink className="w-5 h-5 group-hover:scale-110 transition-transform" />
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     );
