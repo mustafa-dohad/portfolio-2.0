@@ -50,7 +50,7 @@ const projects = [
   },
   {
     id: 3,
-    title: "WeatherWise",
+    title: "Employee Management System",
     description: "Beautiful weather app with location-based forecasts and climate insights",
     image: "/placeholder.svg",
     tags: ["React Native", "API", "Maps", "Charts"],
@@ -58,6 +58,8 @@ const projects = [
     gradient: "from-sky-500/10 to-blue-500/10",
     accent: "border-sky-500/20",
     icon: Cloud,
+    github: "https://github.com/mustafa-dohad/employee-management-system",
+    demo: "https://youtu.be/pXMzkRGpKy0?si=oWgNlaPrKuesuZCX",
   },
   {
     id: 4,
@@ -108,8 +110,6 @@ const projects = [
 ];
 
 export default function Projects() {
-  const cardBaseClass =
-    "group relative rounded-2xl shadow-md overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-lg flex flex-col justify-between h-auto md:h-[280px] lg:h-[280px] min-h-[140px]";
   return (
     <section className="min-h-screen bg-background w-full">
       <div className="max-w-7xl mx-auto px-4 py-12">
@@ -132,14 +132,12 @@ export default function Projects() {
 
 function ProjectCard({ project }) {
   const Icon = project.icon;
-  const cardBaseClass =
-    "group relative rounded-2xl shadow-md overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-lg flex flex-col justify-between h-auto md:h-[280px] lg:h-[280px] min-h-[140px]";
   if (project.id === 1) {
     // Custom ExpenseFlow card as a modern credit/debit card
     const dollarCursor = 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\'%3E%3Ctext x=\'0\' y=\'24\' font-size=\'24\'%3E%24%3C/text%3E%3C/svg%3E") 0 24, pointer';
     return (
       <div
-        className={`${cardBaseClass} border-2 border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900`}
+        className={`group relative rounded-2xl shadow-md overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-lg flex flex-col justify-between h-auto md:h-[280px] lg:h-[280px] min-h-[140px] border-2 border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900`}
         style={{ cursor: dollarCursor }}
       >
         {/* Subtle Card Texture Overlay */}
@@ -241,7 +239,7 @@ function ProjectCard({ project }) {
     const circleCursor = 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\'%3E%3Ccircle cx=\'16\' cy=\'16\' r=\'10\' fill=\'none\' stroke=\'white\' stroke-width=\'2\'/%3E%3C/svg%3E") 16 16, pointer';
     return (
       <div
-        className={`${cardBaseClass} border border-[#38bdf8] bg-gradient-to-br from-[#233554] to-[#0f172a] rounded-xl shadow-none relative p-2 flex flex-col justify-between`}
+        className={`group relative rounded-2xl shadow-md overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-lg flex flex-col justify-between h-auto md:h-[280px] lg:h-[280px] min-h-[140px] border border-[#38bdf8] bg-gradient-to-br from-[#233554] to-[#0f172a] rounded-xl shadow-none relative p-2 flex flex-col justify-between`}
         style={{ cursor: circleCursor }}
       >
         {/* Glowing Status Bar */}
@@ -327,7 +325,7 @@ function ProjectCard({ project }) {
     const catCursor = 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\'%3E%3Ctext x=\'0\' y=\'24\' font-size=\'24\'%3E%F0%9F%90%B1%3C/text%3E%3C/svg%3E") 0 24, pointer';
     return (
       <div
-        className="rounded-xl shadow-lg border border-[#23272e] bg-[#0d1117] relative flex flex-col h-auto md:h-[280px] lg:h-[280px] min-h-[140px] overflow-hidden transition-transform duration-300 hover:scale-105"
+        className={`group relative rounded-2xl shadow-md overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-lg flex flex-col justify-between h-auto md:h-[280px] lg:h-[280px] min-h-[140px] border border-[#23272e] bg-[#0d1117] rounded-xl shadow-lg border border-[#23272e] bg-[#0d1117] relative flex flex-col h-auto md:h-[280px] lg:h-[280px] min-h-[140px] overflow-hidden transition-transform duration-300 hover:scale-105`}
         style={{ cursor: catCursor }}
       >
         {/* macOS Terminal Top Bar */}
@@ -390,7 +388,7 @@ function ProjectCard({ project }) {
     const calculatorCursor = 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\'%3E%3Ctext x=\'0\' y=\'24\' font-size=\'24\' fill=\'white\'%3E%3D%3C/text%3E%3C/svg%3E") 0 24, pointer';
     return (
       <div
-        className={`${cardBaseClass} bg-[#000000] rounded-3xl shadow-2xl border border-[#333333] relative overflow-hidden`}
+        className={`group relative rounded-2xl shadow-md overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-lg flex flex-col justify-between h-auto md:h-[280px] lg:h-[280px] min-h-[140px] border bg-[#000000] rounded-3xl shadow-2xl border border-[#333333] relative overflow-hidden`}
         style={{ cursor: calculatorCursor }}
       >
         {/* Calculator Body */}
@@ -500,9 +498,149 @@ function ProjectCard({ project }) {
       </div>
     );
   }
+  if (project.id === 3) {
+    // Custom Employee Management System card as a realistic horizontal employee ID card
+    const clip = (
+      <svg width="48" height="18" viewBox="0 0 48 18" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute left-1/2 -translate-x-1/2 -top-5 z-20">
+        <rect x="18" y="0" width="12" height="8" rx="3" fill="#cbd5e1" />
+        <rect x="0" y="8" width="48" height="6" rx="3" fill="#94a3b8" />
+        <rect x="12" y="14" width="24" height="4" rx="2" fill="#cbd5e1" />
+      </svg>
+    );
+    const barcode = (
+      <svg width="240" height="18" viewBox="0 0 240 18" fill="none" xmlns="http://www.w3.org/2000/svg" className="mt-2 w-full max-w-full">
+        <rect x="0" y="0" width="4" height="18" fill="#222" />
+        <rect x="8" y="0" width="2" height="18" fill="#222" />
+        <rect x="12" y="0" width="6" height="18" fill="#222" />
+        <rect x="20" y="0" width="2" height="18" fill="#222" />
+        <rect x="24" y="0" width="4" height="18" fill="#222" />
+        <rect x="30" y="0" width="2" height="18" fill="#222" />
+        <rect x="34" y="0" width="6" height="18" fill="#222" />
+        <rect x="42" y="0" width="2" height="18" fill="#222" />
+        <rect x="46" y="0" width="4" height="18" fill="#222" />
+        <rect x="52" y="0" width="2" height="18" fill="#222" />
+        <rect x="56" y="0" width="6" height="18" fill="#222" />
+        <rect x="64" y="0" width="2" height="18" fill="#222" />
+        <rect x="68" y="0" width="4" height="18" fill="#222" />
+        <rect x="74" y="0" width="2" height="18" fill="#222" />
+        <rect x="78" y="0" width="6" height="18" fill="#222" />
+        <rect x="86" y="0" width="2" height="18" fill="#222" />
+        <rect x="90" y="0" width="4" height="18" fill="#222" />
+        <rect x="96" y="0" width="2" height="18" fill="#222" />
+        <rect x="100" y="0" width="6" height="18" fill="#222" />
+        <rect x="108" y="0" width="2" height="18" fill="#222" />
+        <rect x="112" y="0" width="4" height="18" fill="#222" />
+        <rect x="118" y="0" width="2" height="18" fill="#222" />
+        <rect x="122" y="0" width="6" height="18" fill="#222" />
+        <rect x="130" y="0" width="2" height="18" fill="#222" />
+        <rect x="134" y="0" width="4" height="18" fill="#222" />
+        <rect x="140" y="0" width="2" height="18" fill="#222" />
+        <rect x="144" y="0" width="6" height="18" fill="#222" />
+        <rect x="152" y="0" width="2" height="18" fill="#222" />
+        <rect x="156" y="0" width="4" height="18" fill="#222" />
+        <rect x="162" y="0" width="2" height="18" fill="#222" />
+        <rect x="166" y="0" width="6" height="18" fill="#222" />
+        <rect x="174" y="0" width="2" height="18" fill="#222" />
+        <rect x="178" y="0" width="4" height="18" fill="#222" />
+        <rect x="184" y="0" width="2" height="18" fill="#222" />
+        <rect x="188" y="0" width="6" height="18" fill="#222" />
+        <rect x="196" y="0" width="2" height="18" fill="#222" />
+        <rect x="200" y="0" width="4" height="18" fill="#222" />
+        <rect x="206" y="0" width="2" height="18" fill="#222" />
+        <rect x="210" y="0" width="6" height="18" fill="#222" />
+        <rect x="218" y="0" width="2" height="18" fill="#222" />
+        <rect x="222" y="0" width="4" height="18" fill="#222" />
+        <rect x="228" y="0" width="2" height="18" fill="#222" />
+        <rect x="232" y="0" width="6" height="18" fill="#222" />
+        <rect x="240" y="0" width="2" height="18" fill="#222" />
+      </svg>
+    );
+    // Use the 32x32 PNG file as a cursor
+    const fingerprintCursor = "url('/fingerprint-cursor.png') 16 16, pointer";
+    return (
+      <div className="group relative rounded-2xl shadow-md overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-lg flex flex-col justify-between h-auto md:h-[280px] lg:h-[280px] min-h-[140px] border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900"
+        style={{ cursor: fingerprintCursor }}>
+        {/* Clip */}
+        {clip}
+        {/* Colored Top Bar */}
+        <div className="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-[#f89820] via-[#64748b] to-[#00758f]" />
+        {/* Subtle Pattern */}
+        <div className="absolute inset-0 pointer-events-none opacity-10">
+          <svg width="100%" height="100%" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="idGrid" width="16" height="16" patternUnits="userSpaceOnUse">
+                <rect x="0" y="0" width="16" height="16" fill="none" />
+                <path d="M16 0 L0 0 0 16" fill="none" stroke="#64748b" strokeWidth="0.7" opacity="0.18" />
+                <circle cx="8" cy="8" r="1.2" fill="#f89820" opacity="0.10" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#idGrid)" />
+          </svg>
+        </div>
+        {/* Project Title Full Width */}
+        <div className="w-full text-center pt-8 pb-2 px-2">
+          <span className="text-base md:text-lg font-baloo font-bold text-neutral-800 dark:text-neutral-100 tracking-wide block truncate">Employee Management System</span>
+        </div>
+        {/* Card Content */}
+        <div className="relative flex flex-row items-center h-full w-full px-5 pb-4 z-10">
+          {/* Avatar */}
+          <div className="flex-shrink-0 w-20 h-20 rounded-xl bg-gradient-to-br from-[#f89820] to-[#00758f] flex items-center justify-center shadow-md border-4 border-white dark:border-neutral-900 mr-6">
+            {/* More user-like SVG avatar */}
+            <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-11 h-11">
+              <ellipse cx="22" cy="14.5" rx="8.5" ry="8.5" fill="#fff" />
+              <ellipse cx="22" cy="14.5" rx="7" ry="7" fill="#e5e7eb" />
+              <ellipse cx="22" cy="14.5" rx="5" ry="5" fill="#cbd5e1" />
+              <ellipse cx="22" cy="34" rx="12" ry="7" fill="#e5e7eb" />
+              <ellipse cx="22" cy="34" rx="10" ry="5.5" fill="#cbd5e1" />
+              <ellipse cx="22" cy="34" rx="7.5" ry="4" fill="#fff" />
+            </svg>
+          </div>
+          {/* Info */}
+          <div className="flex-1 flex flex-col justify-center h-full min-w-0">
+            <div className="mb-2">
+              <div className="text-sm md:text-base font-semibold text-neutral-800 dark:text-neutral-100 font-baloo truncate">Name: Mustafa Dohad</div>
+              <div className="text-[9px] md:text-[11px] text-neutral-500 dark:text-neutral-300 font-mono truncate">Email: mustafamurtazadohad@gmail.com</div>
+              <div className="text-xs text-neutral-400 font-mono mt-1">ID: EMS-2024</div>
+            </div>
+            {/* Tech Stack Tags, Barcode, and Actions */}
+            <div className="flex flex-col gap-1 mt-auto">
+              <div className="flex gap-2 flex-wrap mb-1">
+                <span className="bg-[#f89820]/10 text-[#f89820] border border-[#f89820]/30 px-3 py-1 rounded-full text-xs font-bold font-mono">Java</span>
+                <span className="bg-[#64748b]/10 text-[#64748b] border border-[#64748b]/30 px-3 py-1 rounded-full text-xs font-bold font-mono">Swing</span>
+                <span className="bg-[#00758f]/10 text-[#00758f] border border-[#00758f]/30 px-3 py-1 rounded-full text-xs font-bold font-mono">MySQL</span>
+              </div>
+              {/* Barcode centered */}
+              <div className="flex justify-center w-full">{barcode}</div>
+              {/* Actions below barcode, spaced apart */}
+              <div className="flex justify-between w-full mt-2">
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-xs font-mono text-[#00758f] hover:border hover:border-[#00758f] hover:bg-[#e0f7fa]/40 px-3 py-1.5 rounded transition-colors duration-200 group/btn"
+                >
+                  <Github className="w-6 h-6" />
+                  Code
+                </a>
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-xs font-mono text-[#f89820] hover:border hover:border-[#f89820] hover:bg-[#fff7e6]/40 px-3 py-1.5 rounded transition-colors duration-200 group/btn"
+                >
+                  <ExternalLink className="w-6 h-6" />
+                  Demo
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div
-      className={`${cardBaseClass} ${project.accent} border-2 hover:border-opacity-50 bg-white dark:bg-neutral-900`}
+      className={`group relative rounded-2xl shadow-md overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-lg flex flex-col justify-between h-auto md:h-[280px] lg:h-[280px] min-h-[140px] border ${project.accent} border-2 hover:border-opacity-50 bg-white dark:bg-neutral-900`}
     >
       <div
         className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}
