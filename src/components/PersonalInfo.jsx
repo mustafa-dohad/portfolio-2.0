@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import githubIcon from "../assets/icons/social/Github Icon.png";
 import githubIconHover from "../assets/icons/social/Github-hover.png";
 import linkedinIcon from "../assets/icons/social/LinkedIn Icon.png";
@@ -7,6 +7,7 @@ import twitterIcon from "../assets/icons/social/X Icon.png";
 import twitterIconHover from "../assets/icons/social/X-hover.png";
 import profilePic from "../assets/profile/profile.jpg";
 import resumePDF from "../assets/resume/MustafaDohad-Resume.pdf";
+import { ToastContext } from "../App";
 
 const socialLinks = [
   {
@@ -30,6 +31,7 @@ const socialLinks = [
 ];
 
 export default function PersonalInfo() {
+  const { showToast } = useContext(ToastContext);
   const [hovered, setHovered] = useState(null);
 
   return (
@@ -61,6 +63,11 @@ export default function PersonalInfo() {
           href="mailto:mustafamurtazadohad@gmail.com"
           className="flex items-center justify-center lg:justify-start space-x-2 text-neutral-500 dark:text-neutral-400 mb-2 font-sanchez hover:text-blue-500 dark:hover:text-blue-400 focus:text-blue-500 dark:focus:text-blue-400 transition-colors outline-none"
           aria-label="Send email to mustafamurtazadohad@gmail.com"
+          onClick={e => {
+            e.preventDefault();
+            navigator.clipboard.writeText('mustafamurtazadohad@gmail.com');
+            showToast('Email copied to clipboard!');
+          }}
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-7 lg:h-7">
             <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
@@ -79,8 +86,9 @@ export default function PersonalInfo() {
               className="rounded-full bg-transparent p-2 transition-colors"
               onMouseEnter={() => setHovered(idx)}
               onMouseLeave={() => setHovered(null)}
+              onClick={() => showToast(`${link.label} link opened!`)}
             >
-              <span className="relative block w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7">
+              <span className="relative block w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 transition-transform duration-200 group-hover:-translate-y-1">
                 <img
                   src={link.icon}
                   alt={link.label}
@@ -102,6 +110,7 @@ export default function PersonalInfo() {
           href={resumePDF}
           download="MustafaDohad-Resume.pdf"
           className="px-5 py-2 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 font-medium transition-all duration-200 text-base sm:text-lg hover:bg-[#C42344] hover:text-white focus:outline-none focus:ring-2 focus:ring-neutral-200 dark:focus:ring-neutral-700 font-sanchez transform hover:scale-105"
+          onClick={() => showToast('Resume download started!')}
         >
           Download Resume
         </a>

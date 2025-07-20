@@ -8,6 +8,7 @@ import {
 import WalletIcon from "../assets/icons/ui/Wallet Icon.svg";
 import AnimalIcon from "../assets/icons/ui/Animal Icon.svg";
 import CalculatorIcon from "../assets/icons/ui/Calculator Icon.svg";
+import { motion } from "framer-motion";
 
 const projects = [
   // First row
@@ -89,14 +90,22 @@ export default function Projects() {
       <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Header */}
         <div className="text-center mb-10">
-          <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-neutral-900 to-neutral-700 dark:from-neutral-100 dark:to-neutral-400 bg-clip-text text-transparent mb-2 font-sanchez">
+          <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-neutral-900 to-neutral-700 dark:from-neutral-100 dark:to-neutral-400 bg-clip-text text-transparent mb-2 font-sanchez transition-all duration-500 hover:from-cyan-500 hover:to-pink-500 dark:hover:from-cyan-400 dark:hover:to-pink-400">
             Projects
           </h1>
         </div>
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+          {projects.map((project, i) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 32 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1], delay: i * 0.13 }}
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <ProjectCard project={project} />
+            </motion.div>
           ))}
         </div>
       </div>

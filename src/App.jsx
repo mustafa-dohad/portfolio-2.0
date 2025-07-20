@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext, useCallback } from "react";
 import PersonalInfo from "./components/PersonalInfo";
+import { motion } from "framer-motion";
 import SkillsLanguages from "./components/SkillsLanguages";
 import Projects from "./components/Projects";
 import TopNav from "./components/TopNav";
@@ -7,6 +8,11 @@ import BottomNav from "./components/BottomNav";
 import DarkModeToggle from "./components/DarkModeToggle";
 import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
+import Toast from "./components/Toast";
+import ParallaxBackground from "./components/ParallaxBackground";
+import ScrollToTopButton from "./components/ScrollToTopButton";
+
+export const ToastContext = createContext({ showToast: () => {} });
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -72,6 +78,12 @@ const getInitialTheme = () => {
 function App() {
   const [theme, setTheme] = useState(getInitialTheme);
   const [activeTab, setActiveTab] = useState("about");
+  const [toast, setToast] = useState({ message: "", visible: false });
+
+  const showToast = useCallback((message) => {
+    setToast({ message, visible: true });
+  }, []);
+  const hideToast = useCallback(() => setToast(t => ({ ...t, visible: false })), []);
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -88,64 +100,108 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-white dark:bg-gray-900 transition-colors duration-300 pt-16">
-      {/* Sticky Top Nav (md+) */}
-      <TopNav theme={theme} handleThemeChange={handleThemeChange} MaterialUISwitch={MaterialUISwitch} />
-      {/* Floating Bottom Nav (mobile) */}
-      <BottomNav />
-      {/* Main Content */}
-      <PersonalInfo />
-      {/* Tabs below PersonalInfo */}
-      <div className="flex w-full max-w-[180px] xs:max-w-[200px] sm:max-w-md md:max-w-[210px] lg:max-w-[240px] xl:max-w-[280px] mx-auto bg-neutral-100 dark:bg-neutral-900 rounded-full p-1 mt-2 mb-8 relative">
-        {/* Sliding Pill */}
-        <span
-          className={`absolute top-1 bottom-1 left-0 w-1/2 bg-[#C42344] rounded-full transition-transform duration-500 ease-in-out
-            ${activeTab === "about" ? "translate-x-0" : "translate-x-full"}
-          `}
-        />
-        <button
-          onClick={() => setActiveTab("about")}
-          className={`relative z-10 flex-1 basis-0 px-3 py-2 rounded-full text-xs xs:text-sm sm:text-base md:text-lg font-sanchez transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C42344] border-0
-            ${activeTab === "about"
-              ? "text-white"
-              : "text-gray-600 hover:text-gray-800"
-            }`}
+    <ToastContext.Provider value={{ showToast }}>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-white dark:bg-gray-900 transition-colors duration-300 pt-16">
+        {/* Sticky Top Nav (md+) */}
+        <TopNav theme={theme} handleThemeChange={handleThemeChange} MaterialUISwitch={MaterialUISwitch} />
+        {/* Floating Bottom Nav (mobile) */}
+        <BottomNav />
+        {/* Main Content */}
+        <motion.div
+          id="home"
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+          viewport={{ once: true, amount: 0.2 }}
         >
-          About Me
-        </button>
-        <button
-          onClick={() => setActiveTab("skills")}
-          className={`relative z-10 flex-1 basis-0 px-3 py-2 rounded-full text-xs xs:text-sm sm:text-base md:text-lg font-sanchez transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C42344] border-0
-            ${activeTab === "skills"
-              ? "text-white"
-              : "text-gray-600 hover:text-gray-800"
-            }`}
+          <PersonalInfo />
+        </motion.div>
+        {/* Tabs below PersonalInfo */}
+        <motion.div
+          id="skills"
+          className="flex w-full max-w-[180px] xs:max-w-[200px] sm:max-w-md md:max-w-[210px] lg:max-w-[240px] xl:max-w-[280px] mx-auto bg-neutral-100 dark:bg-neutral-900 rounded-full p-1 mt-2 mb-4 md:mb-8 relative scroll-mt-20"
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.1 }}
+          viewport={{ once: true, amount: 0.2 }}
         >
-          Skills
-        </button>
-        </div>
-      <div className="w-full max-w-2xl mx-auto min-h-[180px] relative overflow-hidden">
-        <div
-          className="flex transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] will-change-transform"
-          style={{ transform: activeTab === "about" ? "translateX(0%)" : "translateX(-100%)", transition: 'transform 0.7s cubic-bezier(0.4,0,0.2,1)' }}
+          {/* Sliding Pill */}
+          <span
+            className={`absolute top-1 bottom-1 left-0 w-1/2 bg-[#C42344] rounded-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+              ${activeTab === "about" ? "translate-x-0" : "translate-x-full"}
+            `}
+          />
+          <button
+            onClick={() => setActiveTab("about")}
+            className={`relative z-10 flex-1 basis-0 px-3 py-2 rounded-full text-xs xs:text-sm sm:text-base md:text-lg font-sanchez transition-colors duration-300 transition-transform duration-100 active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C42344] border-0
+              ${activeTab === "about"
+                ? "text-white"
+                : "text-gray-600 hover:text-gray-800"
+              }`}
+          >
+            About Me
+          </button>
+          <button
+            onClick={() => setActiveTab("skills")}
+            className={`relative z-10 flex-1 basis-0 px-3 py-2 rounded-full text-xs xs:text-sm sm:text-base md:text-lg font-sanchez transition-colors duration-300 transition-transform duration-100 active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C42344] border-0
+              ${activeTab === "skills"
+                ? "text-white"
+                : "text-gray-600 hover:text-gray-800"
+              }`}
+          >
+            Skills
+          </button>
+        </motion.div>
+        <motion.div
+          className="w-full max-w-2xl mx-auto min-h-[180px] relative overflow-hidden"
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.2 }}
+          viewport={{ once: true, amount: 0.2 }}
         >
-          {/* About Me Panel */}
-          <div className="w-full flex-shrink-0 px-4 py-4 text-neutral-700 dark:text-neutral-200 text-base font-arapey mb-4">
-            <p>
-              I am a passionate full stack developer with a love for building modern, minimal, and highly interactive web applications. My focus is on clean code, beautiful UI/UX, and delivering real value through technology.<br /><br />
-              I enjoy working with React, TailwindCSS, and C++ for CLI tools, and I’m always exploring new ways to improve my workflow and the user experience.
-            </p>
+          <div
+            className="flex transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] will-change-transform"
+            style={{ transform: activeTab === "about" ? "translateX(0%)" : "translateX(-100%)", transition: 'transform 0.7s cubic-bezier(0.4,0,0.2,1)' }}
+          >
+            {/* About Me Panel */}
+            <div className="w-full flex-shrink-0 px-2 sm:px-4 py-4 mb-4">
+              <div className="w-full bg-white/80 dark:bg-neutral-900/80 rounded-2xl shadow p-4 sm:p-6 border-l-4 border-cyan-400 dark:border-cyan-500 text-center">
+                <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-4 bg-gradient-to-r from-cyan-500 to-pink-500 bg-clip-text text-transparent text-center">
+                  More than just a full-stack dev.
+                </h2>
+                <ul className="space-y-2 sm:space-y-3 text-sm sm:text-base md:text-lg text-neutral-700 dark:text-neutral-200 font-arapey text-center">
+                  <li>🧪 Experimental by nature, detail-obsessed by choice</li>
+                  <li>🎧 Codes to hip-hop and metal riffs</li>
+                  <li>🛠️ Builds tools that solve real-life problems</li>
+                  <li>🚀 Obsessed with performance & clean aesthetics</li>
+                  <li>🧠 Finds flow in vibe coding and database structuring</li>
+                  <li>♟️ Chess tactician & badminton weekend warrior</li>
+                  <li>🧠 Solves problems with a creative twist</li>
+                </ul>
+              </div>
+            </div>
+            {/* Skills & Languages Panel */}
+            <div className="w-full flex-shrink-0">
+              <SkillsLanguages />
+            </div>
           </div>
-          {/* Skills & Languages Panel */}
-          <div className="w-full flex-shrink-0">
-            <SkillsLanguages />
-          </div>
-        </div>
+        </motion.div>
+        <motion.div
+          id="projects"
+          className="w-full scroll-mt-20"
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.3 }}
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <div className="hidden md:block border-t border-neutral-200 dark:border-neutral-800 w-full max-w-2xl mx-auto mb-2"></div>
+          <Projects />
+        </motion.div>
+        <ParallaxBackground />
+        <Toast message={toast.message} visible={toast.visible} onClose={hideToast} />
+        <ScrollToTopButton />
       </div>
-      <div className="mt-0.5 sm:mt-1 lg:mt-0.5 w-full">
-        <Projects />
-      </div>
-    </div>
+    </ToastContext.Provider>
   );
 }
 

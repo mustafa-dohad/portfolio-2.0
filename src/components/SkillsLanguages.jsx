@@ -30,8 +30,8 @@ const skills = [
 
 export default function SkillsLanguages() {
   return (
-    <section className="w-full max-w-4xl mx-auto px-4 py-1 sm:py-2 lg:py-4 mb-0.5 sm:mb-1 lg:mb-2">
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 sm:gap-4 md:gap-6 lg:gap-8 justify-items-center">
+    <section className="w-full max-w-4xl mx-auto px-4 py-1 sm:py-2 lg:py-4 mb-0.5 sm:mb-1 lg:mb-2 flex flex-col lg:justify-center lg:items-center">
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 sm:gap-4 md:gap-6 lg:gap-8 justify-items-center lg:justify-center lg:items-center">
         {skills.map((skill) => (
           <div
             key={skill.name}
