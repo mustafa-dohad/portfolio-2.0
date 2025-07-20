@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import { ToastContext } from '../App';
-import { Phone, Mail, MessageCircle } from 'lucide-react';
+import { Handshake } from 'lucide-react';
 
 function validateEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -9,6 +9,18 @@ function validateEmail(email) {
 export default function ContactForm() {
   const { showToast } = useContext(ToastContext);
   const [sending, setSending] = useState(false);
+  const [focus, setFocus] = useState({});
+  const [values, setValues] = useState({ name: '', email: '', message: '' });
+
+  function handleFocus(e) {
+    setFocus(f => ({ ...f, [e.target.name]: true }));
+  }
+  function handleBlur(e) {
+    setFocus(f => ({ ...f, [e.target.name]: false }));
+  }
+  function handleChange(e) {
+    setValues(v => ({ ...v, [e.target.name]: e.target.value }));
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -41,6 +53,7 @@ export default function ContactForm() {
     setSending(false);
     if (res.ok) {
       showToast('Message sent!');
+      setValues({ name: '', email: '', message: '' });
       form.reset();
     } else {
       showToast('Failed to send. Try again.');
@@ -48,42 +61,95 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5 w-[86%] max-w-md mx-auto bg-white/90 dark:bg-neutral-900/90 rounded-2xl shadow-xl px-4 py-4 sm:py-6 md:py-8 border-l-8 border-green-400 dark:border-cyan-500 relative overflow-hidden pb-20 mt-4 md:mt-8 mb-24">
-      {/* Phone icon header */}
+    <form onSubmit={handleSubmit} className="space-y-4 w-[92%] max-w-lg mx-auto bg-white/80 dark:bg-neutral-900/80 rounded-2xl border-l-4 border-cyan-400 dark:border-cyan-500 shadow p-4 md:p-8 mt-6 mb-20 relative overflow-hidden min-h-[320px]">
       <div className="flex flex-col items-center mb-2">
-        <span className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-green-100 dark:bg-cyan-900 mb-2 shadow">
-          <Phone className="w-7 h-7 text-green-500 dark:text-cyan-400" />
+        <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-cyan-100 dark:bg-cyan-900 mb-2 shadow text-base">
+          <Handshake className="w-8 h-8 text-cyan-500 dark:text-cyan-400" />
         </span>
-        <h2 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-green-500 to-cyan-500 bg-clip-text text-transparent text-center tracking-tight">Let’s Connect</h2>
-        <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1 text-center">Call, text, or drop a message below!</p>
+        <h2 className="text-lg font-bold text-cyan-700 dark:text-cyan-400 mb-1 tracking-tight text-center select-none">Let’s Connect</h2>
       </div>
       {/* Honeypot field (hidden from users) */}
       <input type="text" name="honey" className="hidden" tabIndex="-1" autoComplete="off" />
-      {/* Name input */}
-      <div className="relative">
-        <input name="name" required placeholder="Your Name" className="w-full pl-10 pr-3 py-2 rounded-full border border-neutral-200 dark:border-neutral-700 bg-white/80 dark:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-green-400 dark:focus:ring-cyan-500 text-base transition" />
-        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-green-400 dark:text-cyan-400">
-          <Phone className="w-5 h-5" />
-        </span>
+      {/* Floating label input: Name */}
+      <div className="flex justify-center">
+        <div className="relative w-full max-w-lg">
+          <input
+            name="name"
+            required
+            value={values.name}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            placeholder=" "
+            className="w-full h-10 px-3 py-2 rounded-lg border border-cyan-200 dark:border-cyan-700 bg-white/80 dark:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-cyan-400 dark:focus:ring-cyan-500 text-sm transition peer"
+          />
+          <label
+            htmlFor="name"
+            className={`absolute left-2 top-1 text-cyan-500 dark:text-cyan-400 text-xs font-medium pointer-events-none transition-all duration-200
+              ${focus.name || values.name ? 'scale-90 -translate-y-2' : 'scale-100 translate-y-0'}
+            `}
+          >
+            Name
+          </label>
+        </div>
       </div>
-      {/* Email input */}
-      <div className="relative">
-        <input name="email" type="email" required placeholder="Your Email" className="w-full pl-10 pr-3 py-2 rounded-full border border-neutral-200 dark:border-neutral-700 bg-white/80 dark:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-green-400 dark:focus:ring-cyan-500 text-base transition" />
-        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-green-400 dark:text-cyan-400">
-          <Mail className="w-5 h-5" />
-        </span>
+      {/* Floating label input: Email */}
+      <div className="flex justify-center">
+        <div className="relative w-full max-w-lg">
+          <input
+            name="email"
+            type="email"
+            required
+            value={values.email}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            placeholder=" "
+            className="w-full h-10 px-3 py-2 rounded-lg border border-cyan-200 dark:border-cyan-700 bg-white/80 dark:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-cyan-400 dark:focus:ring-cyan-500 text-sm transition peer"
+          />
+          <label
+            htmlFor="email"
+            className={`absolute left-2 top-1 text-cyan-500 dark:text-cyan-400 text-xs font-medium pointer-events-none transition-all duration-200
+              ${focus.email || values.email ? 'scale-90 -translate-y-2' : 'scale-100 translate-y-0'}
+            `}
+          >
+            Email
+          </label>
+        </div>
       </div>
-      {/* Message input */}
-      <div className="relative">
-        <textarea name="message" required placeholder="Your Message" maxLength={1000} className="w-full pl-10 pr-3 py-2 rounded-2xl border border-neutral-200 dark:border-neutral-700 bg-white/80 dark:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-green-400 dark:focus:ring-cyan-500 text-base min-h-[100px] transition resize-none" />
-        <span className="absolute left-3 top-3 text-green-400 dark:text-cyan-400">
-          <MessageCircle className="w-5 h-5" />
-        </span>
+      {/* Floating label input: Message */}
+      <div className="flex justify-center">
+        <div className="relative w-full max-w-lg">
+          <textarea
+            name="message"
+            required
+            value={values.message}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            placeholder=" "
+            maxLength={1000}
+            className="w-full h-24 px-3 py-2 rounded-lg border border-cyan-200 dark:border-cyan-700 bg-white/80 dark:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-cyan-400 dark:focus:ring-cyan-500 text-sm transition peer resize-none"
+          />
+          <label
+            htmlFor="message"
+            className={`absolute left-2 top-1 text-cyan-500 dark:text-cyan-400 text-xs font-medium pointer-events-none transition-all duration-200
+              ${focus.message || values.message ? 'scale-90 -translate-y-2' : 'scale-100 translate-y-0'}
+            `}
+          >
+            Message
+          </label>
+        </div>
       </div>
-      <button type="submit" className="bg-green-500 hover:bg-green-600 dark:bg-cyan-500 dark:hover:bg-cyan-600 text-white px-6 py-2 sm:py-3 md:py-4 rounded-full font-semibold shadow transition-colors w-full flex items-center justify-center gap-2 disabled:opacity-60 text-base sm:text-lg" disabled={sending}>
-        <Phone className="w-5 h-5" />
-        {sending ? 'Calling...' : 'Send Message'}
-      </button>
+      <div className="flex justify-center">
+        <button
+          type="submit"
+          className="bg-cyan-500 hover:bg-cyan-600 dark:bg-cyan-500 dark:hover:bg-cyan-600 text-white px-5 py-2 rounded-lg text-sm font-semibold shadow transition-colors w-full max-w-lg flex items-center justify-center gap-2 disabled:opacity-60 h-10 active:scale-95 mt-2"
+          disabled={sending}
+        >
+          {sending ? 'Sending...' : 'Send Message'}
+        </button>
+      </div>
     </form>
   );
 } 
