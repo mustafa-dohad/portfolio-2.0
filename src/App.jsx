@@ -11,6 +11,7 @@ import Switch from '@mui/material/Switch';
 import Toast from "./components/Toast";
 import ParallaxBackground from "./components/ParallaxBackground";
 import ScrollToTopButton from "./components/ScrollToTopButton";
+import ContactForm from "./components/ContactForm";
 
 export const ToastContext = createContext({ showToast: () => {} });
 
@@ -197,6 +198,7 @@ function App() {
           <div className="hidden md:block border-t border-neutral-200 dark:border-neutral-800 w-full max-w-2xl mx-auto mb-2"></div>
           <Projects />
         </motion.div>
+        <ContactForm />
         <ParallaxBackground />
         <Toast message={toast.message} visible={toast.visible} onClose={hideToast} />
         <ScrollToTopButton />
