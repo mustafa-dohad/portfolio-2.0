@@ -84,10 +84,10 @@ export default function ContactForm() {
       initial={{ opacity: 0, y: 32 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="relative w-full max-w-lg mx-auto bg-white dark:bg-neutral-900 rounded-2xl shadow-2xl mt-16 mb-24 p-0 flex flex-col items-center justify-center"
+      className="relative w-full max-w-lg mx-auto bg-white dark:bg-[#18181B] rounded-2xl shadow-2xl dark:border dark:border-[#23262F] mt-16 mb-24 p-0 flex flex-col items-center justify-center"
     >
       <div className="w-full max-w-md mx-auto px-6 py-10 flex flex-col gap-7">
-        <h2 className="text-2xl font-bold text-neutral-800 dark:text-white mb-2 text-center tracking-tight">Contact Me</h2>
+        <h2 className="text-2xl font-bold text-neutral-800 dark:text-[#FAFAFA] mb-2 text-center tracking-tight">Contact Me</h2>
         {/* Honeypot field (hidden from users) */}
         <input type="text" name="honey" className="hidden" tabIndex="-1" autoComplete="off" />
         {/* Name Field */}
@@ -99,11 +99,11 @@ export default function ContactForm() {
             onFocus={handleFocus}
             onBlur={handleBlur}
             onChange={handleChange}
-            className={`peer w-full bg-transparent border-b-2 border-neutral-200 dark:border-neutral-700 focus:border-cyan-500 dark:focus:border-cyan-400 text-base md:text-lg text-neutral-800 dark:text-white py-3 px-1 outline-none transition placeholder-transparent ${submitStatus==='error' && !values.name ? 'border-red-400 dark:border-red-500 animate-shake' : ''}`}
+            className={`peer w-full bg-transparent border-b-2 border-neutral-200 dark:border-[#23262F] focus:border-cyan-500 dark:focus:border-[#38BDF8] text-base md:text-lg text-neutral-800 dark:text-[#FAFAFA] py-3 px-1 outline-none transition placeholder-transparent ${submitStatus==='error' && !values.name ? 'border-red-400 dark:border-red-500 animate-shake' : ''}`}
             autoComplete="off"
             id="contact-name"
           />
-          <label htmlFor="contact-name" className="absolute left-1 top-1/2 -translate-y-1/2 text-neutral-400 dark:text-neutral-500 text-base md:text-lg pointer-events-none transition-all duration-200 peer-focus:-translate-y-7 peer-focus:text-xs peer-focus:text-cyan-500 dark:peer-focus:text-cyan-400 peer-valid:-translate-y-7 peer-valid:text-xs peer-valid:text-cyan-500 dark:peer-valid:text-cyan-400 bg-white dark:bg-neutral-900 px-1">Name</label>
+          <label htmlFor="contact-name" className="absolute left-1 top-1/2 -translate-y-1/2 text-neutral-400 dark:text-[#A3A3A3] text-base md:text-lg pointer-events-none transition-all duration-200 peer-focus:-translate-y-7 peer-focus:text-xs peer-focus:text-cyan-500 dark:peer-focus:text-[#38BDF8] peer-valid:-translate-y-7 peer-valid:text-xs peer-valid:text-cyan-500 dark:peer-valid:text-[#38BDF8] bg-white dark:bg-[#18181B] px-1">Name</label>
         </div>
         {/* Email Field */}
         <div className="relative">
@@ -115,11 +115,11 @@ export default function ContactForm() {
             onFocus={handleFocus}
             onBlur={handleBlur}
             onChange={handleChange}
-            className={`peer w-full bg-transparent border-b-2 border-neutral-200 dark:border-neutral-700 focus:border-cyan-500 dark:focus:border-cyan-400 text-base md:text-lg text-neutral-800 dark:text-white py-3 px-1 outline-none transition placeholder-transparent ${submitStatus==='error' && (!values.email || !validateEmail(values.email)) ? 'border-red-400 dark:border-red-500 animate-shake' : ''}`}
+            className={`peer w-full bg-transparent border-b-2 border-neutral-200 dark:border-[#23262F] focus:border-cyan-500 dark:focus:border-[#38BDF8] text-base md:text-lg text-neutral-800 dark:text-[#FAFAFA] py-3 px-1 outline-none transition placeholder-transparent ${submitStatus==='error' && (!values.email || !validateEmail(values.email)) ? 'border-red-400 dark:border-red-500 animate-shake' : ''}`}
             autoComplete="off"
             id="contact-email"
           />
-          <label htmlFor="contact-email" className="absolute left-1 top-1/2 -translate-y-1/2 text-neutral-400 dark:text-neutral-500 text-base md:text-lg pointer-events-none transition-all duration-200 peer-focus:-translate-y-7 peer-focus:text-xs peer-focus:text-cyan-500 dark:peer-focus:text-cyan-400 peer-valid:-translate-y-7 peer-valid:text-xs peer-valid:text-cyan-500 dark:peer-valid:text-cyan-400 bg-white dark:bg-neutral-900 px-1">Email</label>
+          <label htmlFor="contact-email" className="absolute left-1 top-1/2 -translate-y-1/2 text-neutral-400 dark:text-[#A3A3A3] text-base md:text-lg pointer-events-none transition-all duration-200 peer-focus:-translate-y-7 peer-focus:text-xs peer-focus:text-cyan-500 dark:peer-focus:text-[#38BDF8] peer-valid:-translate-y-7 peer-valid:text-xs peer-valid:text-cyan-500 dark:peer-valid:text-[#38BDF8] bg-white dark:bg-[#18181B] px-1">Email</label>
         </div>
         {/* Message Field */}
         <div className="relative">
@@ -131,16 +131,16 @@ export default function ContactForm() {
             onBlur={handleBlur}
             onChange={handleChange}
             maxLength={1000}
-            className={`peer w-full bg-transparent border-b-2 border-neutral-200 dark:border-neutral-700 focus:border-cyan-500 dark:focus:border-cyan-400 text-base md:text-lg text-neutral-800 dark:text-white py-3 px-1 outline-none transition placeholder-transparent resize-none min-h-[90px] ${submitStatus==='error' && !values.message ? 'border-red-400 dark:border-red-500 animate-shake' : ''}`}
+            className={`peer w-full bg-transparent border-b-2 border-neutral-200 dark:border-[#23262F] focus:border-cyan-500 dark:focus:border-[#38BDF8] text-base md:text-lg text-neutral-800 dark:text-[#FAFAFA] py-3 px-1 outline-none transition placeholder-transparent resize-none min-h-[90px] ${submitStatus==='error' && !values.message ? 'border-red-400 dark:border-red-500 animate-shake' : ''}`}
             autoComplete="off"
             id="contact-message"
           />
-          <label htmlFor="contact-message" className="absolute left-1 top-6 text-neutral-400 dark:text-neutral-500 text-base md:text-lg pointer-events-none transition-all duration-200 peer-focus:-translate-y-7 peer-focus:text-xs peer-focus:text-cyan-500 dark:peer-focus:text-cyan-400 peer-valid:-translate-y-7 peer-valid:text-xs peer-valid:text-cyan-500 dark:peer-valid:text-cyan-400 bg-white dark:bg-neutral-900 px-1">Message</label>
+          <label htmlFor="contact-message" className="absolute left-1 top-6 text-neutral-400 dark:text-[#A3A3A3] text-base md:text-lg pointer-events-none transition-all duration-200 peer-focus:-translate-y-7 peer-focus:text-xs peer-focus:text-cyan-500 dark:peer-focus:text-[#38BDF8] peer-valid:-translate-y-7 peer-valid:text-xs peer-valid:text-cyan-500 dark:peer-valid:text-[#38BDF8] bg-white dark:bg-[#18181B] px-1">Message</label>
         </div>
         {/* Submit Button */}
         <motion.button
           type="submit"
-          className={`mt-2 w-full bg-cyan-500 hover:bg-cyan-600 dark:bg-cyan-600 dark:hover:bg-cyan-500 text-white font-semibold text-lg rounded-xl py-3 shadow-md transition-colors flex items-center justify-center gap-2 disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-cyan-400 dark:focus:ring-cyan-500 relative overflow-hidden ${submitStatus==='error' ? 'animate-shake' : ''}`}
+          className={`mt-2 w-full bg-cyan-500 hover:bg-cyan-600 dark:bg-[#38BDF8] dark:hover:bg-[#38BDF8]/90 text-white font-semibold text-lg rounded-xl py-3 shadow-md transition-colors flex items-center justify-center gap-2 disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-cyan-400 dark:focus:ring-[#38BDF8] relative overflow-hidden ${submitStatus==='error' ? 'animate-shake' : ''}`}
           disabled={sending || submitStatus==='success'}
           whileTap={{ scale: 0.96, boxShadow: '0 2px 12px 0 rgba(0,188,212,0.18)' }}
           onMouseDown={() => setButtonRipple(true)}

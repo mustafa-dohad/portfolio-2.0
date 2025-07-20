@@ -13,9 +13,9 @@ export default function TopNav({ theme, handleThemeChange, MaterialUISwitch }) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   return (
-    <nav className="flex fixed top-0 left-0 w-full h-16 bg-white/80 dark:bg-gray-900/80 backdrop-blur z-50 shadow-sm items-center px-8 justify-between font-baloo">
+    <nav className="flex fixed top-0 left-0 w-full h-16 bg-white/80 dark:bg-[#18181B]/80 dark:border-b dark:border-[#23262F] backdrop-blur z-50 shadow-sm items-center px-8 justify-between font-baloo">
       {/* Logo/Name */}
-      <a href="#home" className="text-xl font-bold tracking-wide text-gray-900 dark:text-white select-none" onClick={handleHomeClick}>
+      <a href="#home" className="text-xl font-bold tracking-wide text-gray-900 dark:text-[#FAFAFA] select-none" onClick={handleHomeClick}>
         {'< mustafa />'}
       </a>
       {/* Nav Links - Centered */}
@@ -26,7 +26,7 @@ export default function TopNav({ theme, handleThemeChange, MaterialUISwitch }) {
               key={link.name}
               href={link.href}
               onClick={handleHomeClick}
-              className="text-lg font-medium text-gray-700 dark:text-gray-200 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors duration-150 px-2 py-1 border-b-2 border-transparent hover:border-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+              className="text-lg font-medium text-gray-700 dark:text-[#FAFAFA] hover:text-cyan-500 dark:hover:text-[#38BDF8] transition-colors duration-150 px-2 py-1 border-b-2 border-transparent hover:border-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38BDF8]"
             >
               {link.name}
             </a>
@@ -36,7 +36,7 @@ export default function TopNav({ theme, handleThemeChange, MaterialUISwitch }) {
               href={link.href}
               target={link.external ? "_blank" : undefined}
               rel={link.external ? "noopener noreferrer" : undefined}
-              className="text-lg font-medium text-gray-700 dark:text-gray-200 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors duration-150 px-2 py-1 border-b-2 border-transparent hover:border-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+              className="text-lg font-medium text-gray-700 dark:text-[#FAFAFA] hover:text-cyan-500 dark:hover:text-[#38BDF8] transition-colors duration-150 px-2 py-1 border-b-2 border-transparent hover:border-cyan-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38BDF8]"
             >
               {link.name}
             </a>

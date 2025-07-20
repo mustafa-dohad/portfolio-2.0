@@ -35,7 +35,7 @@ export default function SkillsLanguages() {
         {skills.map((skill) => (
           <div
             key={skill.name}
-            className="flex flex-col items-center justify-center group transition-transform duration-200 ease-in-out w-20 h-20 sm:w-24 sm:h-24 rounded-lg gap-1 sm:hover:bg-white sm:hover:border sm:hover:border-neutral-300 sm:hover:shadow-md sm:dark:hover:bg-neutral-900"
+            className="flex flex-col items-center justify-center group transition-transform duration-200 ease-in-out w-20 h-20 sm:w-24 sm:h-24 rounded-lg gap-1 sm:hover:bg-white sm:hover:border sm:hover:border-neutral-300 sm:hover:shadow-md sm:dark:hover:bg-[#18181B]"
           >
             {skill.icon ? (
               <img
@@ -44,11 +44,11 @@ export default function SkillsLanguages() {
                 className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 object-contain mb-1"
               />
             ) : (
-              <span className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 flex items-center justify-center rounded-full bg-transparent text-neutral-500 dark:text-neutral-400 font-semibold border border-neutral-200 dark:border-neutral-700 mb-1">
+              <span className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 flex items-center justify-center rounded-full bg-transparent text-neutral-500 dark:text-[#A3A3A3] font-semibold border border-neutral-200 dark:border-[#23262F] mb-1">
                 {skill.name[0]}
               </span>
             )}
-            <span className="text-xs sm:text-sm md:text-base text-neutral-700 dark:text-neutral-200 font-sanchez text-center select-none leading-tight">
+            <span className="text-xs sm:text-sm md:text-base text-neutral-700 dark:text-[#FAFAFA] font-sanchez text-center select-none leading-tight">
               {skill.name}
             </span>
           </div>

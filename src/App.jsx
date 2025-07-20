@@ -68,8 +68,8 @@ const getInitialTheme = () => {
     if (typeof storedPrefs === "string") {
       return storedPrefs;
     }
-    const userMedia = window.matchMedia("(prefers-color-scheme: dark)");
-    if (userMedia.matches) {
+    // Use device preference if no localStorage
+    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
       return "dark";
     }
   }
@@ -86,6 +86,19 @@ function App() {
   }, []);
   const hideToast = useCallback(() => setToast(t => ({ ...t, visible: false })), []);
 
+  // On first mount, if no localStorage, set theme to device preference
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.localStorage) {
+      const storedPrefs = window.localStorage.getItem("color-theme");
+      if (!storedPrefs) {
+        const devicePref = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        setTheme(devicePref);
+      }
+    }
+    // Only run on mount
+    // eslint-disable-next-line
+  }, []);
+
   useEffect(() => {
     const root = window.document.documentElement;
     if (theme === "dark") {
@@ -96,13 +109,26 @@ function App() {
     localStorage.setItem("color-theme", theme);
   }, [theme]);
 
+  // Listen for device color scheme changes and auto-update theme if no manual preference
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.matchMedia) {
+      const media = window.matchMedia("(prefers-color-scheme: dark)");
+      const storedPrefs = window.localStorage.getItem("color-theme");
+      if (!storedPrefs) {
+        const handler = (e) => setTheme(e.matches ? "dark" : "light");
+        media.addEventListener("change", handler);
+        return () => media.removeEventListener("change", handler);
+      }
+    }
+  }, [theme]);
+
   const handleThemeChange = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
   return (
     <ToastContext.Provider value={{ showToast }}>
-      <div className="min-h-screen flex flex-col items-center justify-center bg-white dark:bg-gray-900 transition-colors duration-300 pt-16">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-white dark:bg-[#18181B] transition-colors duration-300 pt-16">
         {/* Sticky Top Nav (md+) */}
         <TopNav theme={theme} handleThemeChange={handleThemeChange} MaterialUISwitch={MaterialUISwitch} />
         {/* Floating Bottom Nav (mobile) */}
@@ -120,7 +146,7 @@ function App() {
         {/* Tabs below PersonalInfo */}
         <motion.div
           id="skills"
-          className="flex w-full max-w-[180px] xs:max-w-[200px] sm:max-w-md md:max-w-[210px] lg:max-w-[240px] xl:max-w-[280px] mx-auto bg-neutral-100 dark:bg-neutral-900 rounded-full p-1 mt-2 mb-4 md:mb-8 relative scroll-mt-20"
+          className="flex w-full max-w-[180px] xs:max-w-[200px] sm:max-w-md md:max-w-[210px] lg:max-w-[240px] xl:max-w-[280px] mx-auto bg-neutral-100 dark:bg-[#23262F] rounded-full p-1 mt-2 mb-4 md:mb-8 relative scroll-mt-20"
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.1 }}
@@ -128,7 +154,7 @@ function App() {
         >
           {/* Sliding Pill */}
           <span
-            className={`absolute top-1 bottom-1 left-0 w-1/2 bg-[#C42344] rounded-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+            className={`absolute top-1 bottom-1 left-0 w-1/2 bg-[#C42344] dark:bg-cyan-400 rounded-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
               ${activeTab === "about" ? "translate-x-0" : "translate-x-full"}
             `}
           />
@@ -136,8 +162,8 @@ function App() {
             onClick={() => setActiveTab("about")}
             className={`relative z-10 flex-1 basis-0 px-3 py-2 rounded-full text-xs xs:text-sm sm:text-base md:text-lg font-sanchez transition-colors duration-300 transition-transform duration-100 active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C42344] border-0
               ${activeTab === "about"
-                ? "text-white"
-                : "text-gray-600 hover:text-gray-800"
+                ? "text-white dark:text-neutral-900"
+                : "text-gray-600 dark:text-neutral-200 hover:text-gray-800 dark:hover:text-white"
               }`}
           >
             About Me
@@ -146,8 +172,8 @@ function App() {
             onClick={() => setActiveTab("skills")}
             className={`relative z-10 flex-1 basis-0 px-3 py-2 rounded-full text-xs xs:text-sm sm:text-base md:text-lg font-sanchez transition-colors duration-300 transition-transform duration-100 active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C42344] border-0
               ${activeTab === "skills"
-                ? "text-white"
-                : "text-gray-600 hover:text-gray-800"
+                ? "text-white dark:text-neutral-900"
+                : "text-gray-600 dark:text-neutral-200 hover:text-gray-800 dark:hover:text-white"
               }`}
           >
             Skills

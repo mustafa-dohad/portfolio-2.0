@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   ExternalLink,
   Github,
@@ -114,9 +114,18 @@ export default function Projects() {
 }
 
 function ProjectCard({ project }) {
+  // Dark mode detection for cursor switching
+  const [isDark, setIsDark] = useState(false);
+  useEffect(() => {
+    const update = () => setIsDark(document.documentElement.classList.contains('dark'));
+    update();
+    const observer = new MutationObserver(update);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
   if (project.id === 1) {
     // Custom ExpenseFlow card as a modern credit/debit card
-    const walletCursor = `url('/Wallet Icon.png') 16 16, pointer`;
+    const walletCursor = isDark ? `url('/Wallet%20Icon%20White.png') 16 16, pointer` : `url('/Wallet Icon.png') 16 16, pointer`;
     return (
       <div
         className={`group relative rounded-2xl shadow-md overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-lg flex flex-col justify-between h-auto md:h-[280px] lg:h-[280px] min-h-[140px] border-2 border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900`}
@@ -480,60 +489,70 @@ function ProjectCard({ project }) {
     );
   }
   if (project.title === "Todolist") {
+    // Dark mode detection for cursor switching
+    const [isDark, setIsDark] = useState(false);
+    useEffect(() => {
+      const update = () => setIsDark(document.documentElement.classList.contains('dark'));
+      update();
+      const observer = new MutationObserver(update);
+      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+      return () => observer.disconnect();
+    }, []);
+    const todoCursor = isDark ? "url('/todo-cursor(white).png') 16 16, pointer" : "url('/todo-cursor.png') 16 16, pointer";
     return (
       <div
-        className="group relative rounded-2xl border-l-8 border-blue-400 bg-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex flex-col justify-between h-auto md:h-[280px] lg:h-[280px] min-h-[140px] p-5 overflow-hidden"
-        style={{ cursor: "url('/todo-cursor.png') 16 16, pointer" }}
+        className="group relative rounded-2xl border-l-8 border-blue-400 dark:border-l-8 dark:border-blue-400 bg-white dark:bg-gradient-to-br dark:from-[#20232a] dark:to-[#23262F] shadow-lg hover:shadow-xl hover:scale-105 dark:hover:scale-105 dark:hover:shadow-xl dark:ring-1 dark:ring-blue-400/10 dark:hover:ring-2 dark:hover:ring-blue-400/20 transition-all duration-300 flex flex-col justify-between h-auto md:h-[280px] lg:h-[280px] min-h-[140px] p-5 overflow-hidden dark:border dark:border-[#23262F]"
+        style={{ cursor: todoCursor }}
       >
         {/* + Add Task button (for style) */}
-        <button className="absolute top-3 right-3 bg-blue-100 hover:bg-blue-200 text-blue-700 font-bold rounded-full w-7 h-7 flex items-center justify-center shadow transition-all duration-200 text-base z-10 select-none"
-          style={{ cursor: "url('/todo-cursor.png') 16 16, pointer" }}
+        <button className="absolute top-3 right-3 bg-blue-100 hover:bg-blue-200 text-blue-700 font-bold rounded-full w-7 h-7 flex items-center justify-center shadow transition-all duration-200 text-base z-10 select-none dark:bg-blue-700 dark:text-blue-200 dark:hover:bg-blue-600"
+          style={{ cursor: todoCursor }}
         >+</button>
         {/* Focus badge */}
-        <span className="inline-block mb-2 px-1.5 py-0.5 rounded-full bg-blue-50 text-blue-700 text-xs font-sanchez border border-blue-200 w-fit">Focus</span>
+        <span className="inline-block mb-2 px-1.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-800 text-blue-700 dark:text-blue-200 text-xs font-sanchez border border-blue-200 dark:border-blue-400 w-fit">Focus</span>
         {/* Title and fun emoji */}
-        <div className="flex items-center gap-2 mb-1">
-          <h3 className="text-base md:text-lg lg:text-xl font-bold text-neutral-900 dark:text-white font-sanchez">Todolist</h3>
+        <div className="flex items-center gap-2 mb-1 border-b border-neutral-200 dark:border-b-[#23262F] pb-1">
+          <h3 className="text-base md:text-lg lg:text-xl font-bold text-neutral-900 dark:text-[#FAFAFA] font-sanchez">Todolist</h3>
           <span className="text-lg select-none">📝</span>
         </div>
         {/* Short, punchy description */}
-        <p className="text-xs md:text-sm text-neutral-700 dark:text-neutral-200 font-arapey mb-2">Minimal todo list for your terminal. Stay organized.</p>
+        <p className="text-xs md:text-sm text-neutral-700 dark:text-[#A3A3A3] font-arapey mb-2">Minimal todo list for your terminal. Stay organized.</p>
         {/* Kanban-style checklist */}
-        <div className="flex flex-col gap-1 font-mono text-[12px] text-neutral-800 dark:text-neutral-100 mb-2">
-          <label className="flex items-center gap-2 group/checkbox" style={{ cursor: "url('/todo-cursor.png') 16 16, pointer" }}>
+        <div className="flex flex-col gap-1 font-mono text-[12px] text-neutral-800 dark:text-[#FAFAFA] mb-2">
+          <label className="flex items-center gap-2 group/checkbox" style={{ cursor: todoCursor }}>
             <input type="checkbox" checked readOnly className="accent-blue-500 w-3.5 h-3.5 rounded border border-blue-300" />
             Add groceries to buy 🥦
           </label>
-          <label className="flex items-center gap-2 group/checkbox" style={{ cursor: "url('/todo-cursor.png') 16 16, pointer" }}>
+          <label className="flex items-center gap-2 group/checkbox" style={{ cursor: todoCursor }}>
             <input type="checkbox" className="accent-blue-500 w-3.5 h-3.5 rounded border border-blue-300" />
             Finish C++ homework 📚
           </label>
-          <label className="flex items-center gap-2 group/checkbox" style={{ cursor: "url('/todo-cursor.png') 16 16, pointer" }}>
+          <label className="flex items-center gap-2 group/checkbox" style={{ cursor: todoCursor }}>
             <input type="checkbox" checked readOnly className="accent-blue-500 w-3.5 h-3.5 rounded border border-blue-300" />
             Mark tasks as done ✔️
           </label>
         </div>
         {/* Progress Bar */}
-        <div className="w-full h-2 bg-blue-100 rounded-full overflow-hidden mb-2">
-          <div className="h-full bg-blue-400 transition-all duration-500" style={{ width: '50%' }} />
+        <div className="w-full h-2 bg-blue-100 dark:bg-blue-900 rounded-full overflow-hidden mb-2">
+          <div className="h-full bg-blue-400 dark:bg-blue-400 transition-all duration-500" style={{ width: '50%' }} />
         </div>
         {/* Tags */}
         <div className="flex gap-2 flex-wrap mt-auto mb-2">
           {project.tags.map(tag => (
-            <span key={tag} className="bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded text-[10px] font-sanchez border border-blue-200">
+            <span key={tag} className="bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 px-1.5 py-0.5 rounded text-[10px] font-sanchez border border-blue-200 dark:border-blue-400">
               {tag}
             </span>
           ))}
         </div>
         {/* GitHub Button */}
         {project.github && (
-          <div className="flex justify-end w-full" style={{ cursor: "url('/todo-cursor.png') 16 16, pointer" }}>
+          <div className="flex justify-end w-full" style={{ cursor: todoCursor }}>
             <a
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 text-xs font-mono text-blue-700 hover:border hover:border-blue-400 hover:bg-blue-50 px-3 py-1.5 rounded-lg transition-colors duration-200 group/btn mt-1"
-              style={{ cursor: "url('/todo-cursor.png') 16 16, pointer" }}
+              className="flex items-center gap-1 text-xs font-mono text-blue-700 dark:text-blue-200 hover:border hover:border-blue-400 dark:hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900 px-3 py-1.5 rounded-lg transition-colors duration-200 group/btn mt-1"
+              style={{ cursor: todoCursor }}
             >
               <Github className="w-4 h-4" />
               GitHub
@@ -553,55 +572,14 @@ function ProjectCard({ project }) {
       </svg>
     );
     const barcode = (
-      <svg width="240" height="18" viewBox="0 0 240 18" fill="none" xmlns="http://www.w3.org/2000/svg" className="mt-2 w-full max-w-full">
-        <rect x="0" y="0" width="4" height="18" fill="#222" />
-        <rect x="8" y="0" width="2" height="18" fill="#222" />
-        <rect x="12" y="0" width="6" height="18" fill="#222" />
-        <rect x="20" y="0" width="2" height="18" fill="#222" />
-        <rect x="24" y="0" width="4" height="18" fill="#222" />
-        <rect x="30" y="0" width="2" height="18" fill="#222" />
-        <rect x="34" y="0" width="6" height="18" fill="#222" />
-        <rect x="42" y="0" width="2" height="18" fill="#222" />
-        <rect x="46" y="0" width="4" height="18" fill="#222" />
-        <rect x="52" y="0" width="2" height="18" fill="#222" />
-        <rect x="56" y="0" width="6" height="18" fill="#222" />
-        <rect x="64" y="0" width="2" height="18" fill="#222" />
-        <rect x="68" y="0" width="4" height="18" fill="#222" />
-        <rect x="74" y="0" width="2" height="18" fill="#222" />
-        <rect x="78" y="0" width="6" height="18" fill="#222" />
-        <rect x="86" y="0" width="2" height="18" fill="#222" />
-        <rect x="90" y="0" width="4" height="18" fill="#222" />
-        <rect x="96" y="0" width="2" height="18" fill="#222" />
-        <rect x="100" y="0" width="6" height="18" fill="#222" />
-        <rect x="108" y="0" width="2" height="18" fill="#222" />
-        <rect x="112" y="0" width="4" height="18" fill="#222" />
-        <rect x="118" y="0" width="2" height="18" fill="#222" />
-        <rect x="122" y="0" width="6" height="18" fill="#222" />
-        <rect x="130" y="0" width="2" height="18" fill="#222" />
-        <rect x="134" y="0" width="4" height="18" fill="#222" />
-        <rect x="140" y="0" width="2" height="18" fill="#222" />
-        <rect x="144" y="0" width="6" height="18" fill="#222" />
-        <rect x="152" y="0" width="2" height="18" fill="#222" />
-        <rect x="156" y="0" width="4" height="18" fill="#222" />
-        <rect x="162" y="0" width="2" height="18" fill="#222" />
-        <rect x="166" y="0" width="6" height="18" fill="#222" />
-        <rect x="174" y="0" width="2" height="18" fill="#222" />
-        <rect x="178" y="0" width="4" height="18" fill="#222" />
-        <rect x="184" y="0" width="2" height="18" fill="#222" />
-        <rect x="188" y="0" width="6" height="18" fill="#222" />
-        <rect x="196" y="0" width="2" height="18" fill="#222" />
-        <rect x="200" y="0" width="4" height="18" fill="#222" />
-        <rect x="206" y="0" width="2" height="18" fill="#222" />
-        <rect x="210" y="0" width="6" height="18" fill="#222" />
-        <rect x="218" y="0" width="2" height="18" fill="#222" />
-        <rect x="222" y="0" width="4" height="18" fill="#222" />
-        <rect x="228" y="0" width="2" height="18" fill="#222" />
-        <rect x="232" y="0" width="6" height="18" fill="#222" />
-        <rect x="240" y="0" width="2" height="18" fill="#222" />
+      <svg width="240" height="18" viewBox="0 0 240 18" fill="none" xmlns="http://www.w3.org/2000/svg" className="mt-2 w-full max-w-full text-[#222] dark:text-white">
+        {[0,8,12,20,24,30,34,42,46,52,56,64,68,74,78,86,90,96,100,108,112,118,122,130,134,140,144,152,156,162,166,174,178,184,188,196,200,206,210,218,222,228,232,240].map((x, i) => (
+          <rect key={x} x={x} y="0" width={([4,2,6,2,4,2,6,2,4,2,6,2,4,2,6,2,4,2,6,2,4,2,6,2,4,2,6,2,4,2,6,2,4,2,6,2,4,2,6,2,2][i])} height="18" fill="currentColor" />
+        ))}
       </svg>
     );
     // Use the 32x32 PNG file as a cursor
-    const fingerprintCursor = "url('/fingerprint-cursor.png') 16 16, pointer";
+    const fingerprintCursor = isDark ? "url('/fingerprint-cursor(white).png') 16 16, pointer" : "url('/fingerprint-cursor.png') 16 16, pointer";
     return (
       <div className="group relative rounded-2xl shadow-md overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-lg flex flex-col justify-between h-auto md:h-[280px] lg:h-[280px] min-h-[140px] border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900"
         style={{ cursor: fingerprintCursor }}>
