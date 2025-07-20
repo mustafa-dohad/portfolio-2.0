@@ -1,6 +1,6 @@
 import React, { useEffect, useState, createContext, useCallback } from "react";
 import PersonalInfo from "./components/PersonalInfo";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import SkillsLanguages from "./components/SkillsLanguages";
 import Projects from "./components/Projects";
 import TopNav from "./components/TopNav";
@@ -154,38 +154,49 @@ function App() {
           </button>
         </motion.div>
         <motion.div
-          className="w-full max-w-2xl mx-auto min-h-[180px] relative overflow-hidden"
+          className="w-full max-w-2xl mx-auto relative"
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.2 }}
           viewport={{ once: true, amount: 0.2 }}
         >
-          <div
-            className="flex transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] will-change-transform"
-            style={{ transform: activeTab === "about" ? "translateX(0%)" : "translateX(-100%)", transition: 'transform 0.7s cubic-bezier(0.4,0,0.2,1)' }}
-          >
-            {/* About Me Panel */}
-            <div className="w-full flex-shrink-0 px-2 sm:px-4 py-4 mb-4">
-              <div className="w-full bg-white/80 dark:bg-neutral-900/80 rounded-2xl shadow p-4 sm:p-6 border-l-4 border-cyan-400 dark:border-cyan-500 text-center">
-                <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-4 bg-gradient-to-r from-cyan-500 to-pink-500 bg-clip-text text-transparent text-center">
-                  More than just a full-stack dev.
-                </h2>
-                <ul className="space-y-2 sm:space-y-3 text-sm sm:text-base md:text-lg text-neutral-700 dark:text-neutral-200 font-arapey text-center">
-                  <li>🧪 Experimental by nature, detail-obsessed by choice</li>
-                  <li>🎧 Codes to hip-hop and metal riffs</li>
-                  <li>🛠️ Builds tools that solve real-life problems</li>
-                  <li>🚀 Obsessed with performance & clean aesthetics</li>
-                  <li>🧠 Finds flow in vibe coding and database structuring</li>
-                  <li>♟️ Chess tactician & badminton weekend warrior</li>
-                  <li>🧠 Solves problems with a creative twist</li>
-                </ul>
-              </div>
-            </div>
-            {/* Skills & Languages Panel */}
-            <div className="w-full flex-shrink-0">
-              <SkillsLanguages />
-            </div>
-          </div>
+          <AnimatePresence mode="wait" initial={false}>
+            {activeTab === "about" && (
+              <motion.div
+                key="about"
+                initial={{ opacity: 0, x: -24 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
+                className="w-full flex-shrink-0 px-2 sm:px-4 py-4"
+              >
+                <div className="w-full bg-white/80 dark:bg-neutral-900/80 rounded-2xl shadow p-4 sm:p-6 border-l-4 border-cyan-400 dark:border-cyan-500 text-center">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-4 bg-gradient-to-r from-cyan-500 to-pink-500 bg-clip-text text-transparent text-center">
+                    More than just a full-stack dev.
+                  </h2>
+                  <ul className="space-y-2 sm:space-y-3 text-sm sm:text-base md:text-lg text-neutral-700 dark:text-neutral-200 font-arapey text-center">
+                    <li>🧪 Experimental by nature, detail-obsessed by choice</li>
+                    <li>🎧 Codes to hip-hop and metal riffs</li>
+                    <li>🛠️ Builds tools that solve real-life problems</li>
+                    <li>🚀 Obsessed with performance & clean aesthetics</li>
+                    <li>🧠 Finds flow in vibe coding and database structuring</li>
+                    <li>♟️ Chess tactician & badminton weekend warrior</li>
+                    <li>🧠 Solves problems with a creative twist</li>
+                  </ul>
+                </div>
+              </motion.div>
+            )}
+            {activeTab === "skills" && (
+              <motion.div
+                key="skills"
+                initial={{ opacity: 0, x: 24 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
+                className="w-full flex-shrink-0"
+              >
+                <SkillsLanguages />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
         <motion.div
           id="projects"
@@ -195,7 +206,6 @@ function App() {
           transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.3 }}
           viewport={{ once: true, amount: 0.2 }}
         >
-          <div className="hidden md:block border-t border-neutral-200 dark:border-neutral-800 w-full max-w-2xl mx-auto mb-2"></div>
           <Projects />
         </motion.div>
         <ContactForm />
