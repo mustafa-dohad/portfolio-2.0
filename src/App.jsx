@@ -80,6 +80,7 @@ function App() {
   const [theme, setTheme] = useState(getInitialTheme);
   const [activeTab, setActiveTab] = useState("about");
   const [toast, setToast] = useState({ message: "", visible: false });
+  const [showAlert, setShowAlert] = useState(true);
 
   const showToast = useCallback((message) => {
     setToast({ message, visible: true });
@@ -131,6 +132,21 @@ function App() {
       <div className="min-h-screen flex flex-col items-center justify-center bg-white dark:bg-[#18181B] transition-colors duration-300 pt-16">
         {/* Sticky Top Nav (md+) */}
         <TopNav theme={theme} handleThemeChange={handleThemeChange} MaterialUISwitch={MaterialUISwitch} />
+        {/* Dismissible Alert (all screens) */}
+        {showAlert && (
+          <div className="w-[90vw] max-w-2xl mx-auto mt-3 sm:mt-4 md:mt-6 mb-2 px-4 py-3 rounded-xl shadow-md bg-gradient-to-r from-cyan-100 to-pink-100 text-neutral-800 dark:from-[#23262F] dark:to-[#23262F] dark:text-[#FAFAFA] border border-cyan-200 dark:border-cyan-700 flex items-center justify-between">
+            <span className="font-sanchez text-sm sm:text-base">
+              ✨ Seeking a 2025 internship: Let’s build something extraordinary together.
+            </span>
+            <button
+              onClick={() => setShowAlert(false)}
+              className="ml-3 text-neutral-500 hover:text-cyan-500 dark:hover:text-cyan-400 focus:outline-none text-xl font-bold px-1"
+              aria-label="Dismiss alert"
+            >
+              &times;
+            </button>
+          </div>
+        )}
         {/* Floating Bottom Nav (mobile) */}
         <BottomNav />
         {/* Main Content */}
@@ -146,7 +162,7 @@ function App() {
         {/* Tabs below PersonalInfo */}
         <motion.div
           id="skills"
-          className="flex w-full max-w-[180px] xs:max-w-[200px] sm:max-w-md md:max-w-[210px] lg:max-w-[240px] xl:max-w-[280px] mx-auto bg-neutral-100 dark:bg-[#23262F] rounded-full p-1 mt-2 mb-4 md:mb-8 relative scroll-mt-20"
+          className="flex w-full max-w-[180px] xs:max-w-[200px] sm:max-w-md md:max-w-[320px] lg:max-w-[240px] xl:max-w-[280px] mx-auto bg-neutral-100 dark:bg-[#23262F] rounded-full p-1 mt-2 mb-4 md:mb-8 relative scroll-mt-20"
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.1 }}
@@ -234,7 +250,9 @@ function App() {
         >
           <Projects />
         </motion.div>
-        <ContactForm />
+        <section id="contact" className="w-[85%] md:w-[85%] lg:w-full scroll-mt-20 mt-4 sm:mt-8 md:mt-12 min-h-[6vh] sm:min-h-[10vh] md:min-h-[14vh] mx-auto">
+          <ContactForm />
+        </section>
         <ParallaxBackground />
         <Toast message={toast.message} visible={toast.visible} onClose={hideToast} />
         <ScrollToTopButton />

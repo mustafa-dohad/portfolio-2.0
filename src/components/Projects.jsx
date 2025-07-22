@@ -86,10 +86,10 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section className="min-h-[70vh] bg-background w-full">
-      <div className="max-w-7xl mx-auto px-4 pb-24 pt-10 md:pt-16">
+    <section className="min-h-[50vh] sm:min-h-[60vh] md:min-h-[70vh] bg-background w-full">
+      <div className="max-w-7xl mx-auto px-4 pb-6 sm:pb-10 pt-6 md:pt-12">
         {/* Header */}
-        <div className="text-center mb-10">
+        <div className="text-center mb-6 sm:mb-8">
           <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-neutral-900 to-neutral-700 dark:from-neutral-100 dark:to-neutral-400 bg-clip-text text-transparent mb-2 font-sanchez transition-all duration-500 hover:from-cyan-500 hover:to-pink-500 dark:hover:from-cyan-400 dark:hover:to-pink-400">
             Projects
           </h1>
