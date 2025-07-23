@@ -12,7 +12,7 @@ import twitterIconHover from "../assets/icons/social/X-hover.png";
 import twitterIconWhite from "../assets/icons/social/X Icon (white).png";
 import twitterIconHoverWhite from "../assets/icons/social/X-hover(white).png";
 import profilePic from "../assets/profile/profile.jpg";
-import resumePDF from "../assets/resume/MustafaDohad-Resume.pdf";
+// import resumePDF from "../assets/resume/MustafaDohad-Resume.pdf";
 import { ToastContext } from "../App";
 
 const socialLinks = [
@@ -131,8 +131,8 @@ export default function PersonalInfo() {
         </div>
         {/* Resume Download Button */}
         <a
-          href={resumePDF}
-          download="MustafaDohad-Resume.pdf"
+          href="/resume/Mustafa Dohad - Resume.pdf"
+          download="Mustafa Dohad - Resume.pdf"
           className="px-5 py-2 rounded-full bg-neutral-100 dark:bg-[#23262F] text-neutral-700 dark:text-[#FAFAFA] font-medium transition-all duration-200 text-base sm:text-lg hover:bg-[#C42344] dark:hover:bg-cyan-400 hover:text-white dark:hover:text-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-200 dark:focus:ring-cyan-400 font-sanchez transform hover:scale-105"
           onClick={() => showToast('Resume download started!')}
         >
